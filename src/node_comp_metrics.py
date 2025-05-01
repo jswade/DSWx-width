@@ -23,21 +23,21 @@ import matplotlib.pyplot as plt
 # ******************************************************************************
 # Set files paths
 # ******************************************************************************
-# comp_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera/swot_comp/opera_swot_comp_2023-07-01to2024-10-19.csv'
+comp_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
+    'opera/swot_comp/opera_swot_comp_2023-07-01to2024-10-19.csv'
 
-# # Set input to node shapefile
-# node_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'sword/nodes/'
+# Set input to node shapefile
+node_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
+    'sword/nodes/'
 
-# # Set output file paths
-# node_out_csv = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/'\
-#     'output/opera/node_metrics/swot_opera_node_metrics_2023-07-01'\
-#     'to2024-10-19.csv'
+# Set output file paths
+node_out_csv = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/'\
+    'output/opera/node_metrics/swot_opera_node_metrics_2023-07-01'\
+    'to2024-10-19.csv'
 
-# node_out_shp = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/'\
-#     'output/opera/node_metrics/swot_opera_node_metrics_2023-07-01'\
-#     'to2024-10-19.shp'
+node_out_shp = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/'\
+    'output/opera/node_metrics/swot_opera_node_metrics_2023-07-01'\
+    'to2024-10-19.shp'
 
 
 # ******************************************************************************
@@ -106,6 +106,9 @@ node_reproj = [gdf.to_crs(epsg=4326) for gdf in node_all]
 
 # Merge all node shapefiles
 node_merge = gpd.pd.concat(node_reproj, ignore_index=True)
+
+# Drop duplicate nodes
+node_merge = node_merge.drop_duplicates(subset="node_id")
 
 
 # ******************************************************************************
