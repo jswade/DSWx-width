@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ******************************************************************************
-# node_comp_bitwise.py
+# Node_Comp_Bitwise.py
 # ******************************************************************************
 
 # Purpose:
@@ -17,38 +17,7 @@ from datetime import datetime
 import glob
 import numpy as np
 import pandas as pd
-
-
-# # ******************************************************************************
-# # Set files paths
-# # ******************************************************************************
-# # Set input directory to SWOT observations
-# swot_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'swot/swot_nodes_2023-07-01to2024-10-19.csv'
-
-# qual_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'swot/swot_nodes_2023-07-01to2024-10-19_bit_qual.csv'
-
-# # Set input directiony to OPERA widths
-# opera_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera/width/'
-
-# comp_out = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera/swot_comp/opera_swot_comp_2023-07-01to2024-10-19.csv'
-
-# # Set input directory to SWOT observations
-# swot_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'swot/swot_nodes_2023-07-01to2024-10-19.csv'
-
-# qual_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'swot/swot_nodes_2023-07-01to2024-10-19_bit_qual.csv'
-
-# # Set input directiony to OPERA widths
-# opera_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera/width/'
-
-# comp_out = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera/swot_comp/opera_swot_comp_2023-07-01to2024-10-19.csv'
+import os
 
 
 # ******************************************************************************
@@ -92,10 +61,10 @@ except IOError:
     raise SystemExit(22)
 
 try:
-    with open(opera_in) as file:
+    if os.path.isdir(opera_in):
         pass
 except IOError:
-    print('ERROR - Unable to open ' + opera_in)
+    print('ERROR - '+opera_in+' invalid folder path')
     raise SystemExit(22)
 
 

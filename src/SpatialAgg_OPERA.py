@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ******************************************************************************
-# SpatialAgg_OPERA_v16.py
+# SpatialAgg_OPERA.py
 # ******************************************************************************
 
 # Purpose:
@@ -25,23 +25,6 @@ from collections import Counter
 import rasterio
 from rasterio.warp import calculate_default_transform, reproject, Resampling
 from rasterio.merge import merge
-
-
-# ******************************************************************************
-# Set files paths
-# ******************************************************************************
-# # Set input directory to OPERA tiles
-# opera_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera/temp_agg/'
-
-# tile_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera/utm_overlap/opera_utm_overlap.csv'
-    
-# utm_str = '15N'
-
-# # Set merged raster output path
-# merge_out = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera/merge/'
 
 
 # ******************************************************************************

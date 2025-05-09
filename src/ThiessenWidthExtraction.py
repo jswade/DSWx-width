@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ******************************************************************************
-# 07_ThiessenWidthExtraction_v16.py
+# ThiessenWidthExtraction.py
 # ******************************************************************************
 
 # Purpose:
@@ -20,20 +20,6 @@ import sys
 import re
 import os
 from datetime import datetime
-
-
-# # ******************************************************************************
-# # Set file paths
-# # ******************************************************************************
-# # Set input file paths
-# pixel_num_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/'\
-#     'output/opera/pixel_num/'
-
-# utm_str = '12N'
-
-# # Set output file path
-# width_out = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera/width_utm/'
 
 
 # ******************************************************************************

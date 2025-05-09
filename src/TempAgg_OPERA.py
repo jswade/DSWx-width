@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ******************************************************************************
-# TempAgg_OPERA_v16.py
+# TempAgg_OPERA.py
 # ******************************************************************************
 
 # Purpose:
@@ -20,24 +20,6 @@ import numpy as np
 from datetime import datetime, timedelta
 import rasterio
 
-# # ******************************************************************************
-# # Set files paths
-# # ******************************************************************************
-# # Set input directory to aggregated OPERA tiles
-# opera_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera/conf_reclass/'
-
-# # Input dates
-# date1 = '2023-07-01'
-# date2 = '2024-10-19'
-
-# # Aggregation window in days
-# window = 14
-
-# # Set output file path
-# tile_out = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera/temp_agg/'
-
 
 # ******************************************************************************
 # Declaration of variables (given as command line arguments)
@@ -46,7 +28,7 @@ import rasterio
 # 2 - date1
 # 3 - date2
 # 4 - window
-# 4 - tile_out
+# 5 - tile_out
 
 
 # ******************************************************************************
@@ -163,8 +145,6 @@ for i in range(len(tile_uniq)):
         # Retrieve files from within date range
         sub_files = [tile_files[ind] for ind, d in enumerate(file_dates) if
                      window_i[0] <= d <= window_i[1]]
-        
-        x.append(len(sub_files))
 
         # If no files retrieved, skip to next loop
         if len(sub_files) == 0:

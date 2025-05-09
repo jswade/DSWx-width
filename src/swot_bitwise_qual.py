@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ******************************************************************************
-# swot_bitwise_qual.py
+# SWOT_Bitwise_Qual.py
 # ******************************************************************************
 
 # Purpose:
@@ -22,17 +22,6 @@
 import sys
 import numpy as np
 import pandas as pd
-
-
-# # ******************************************************************************
-# # Set files paths
-# # ******************************************************************************
-# # Set input file path
-# swot_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'swot/swot_nodes_2023-07-01to2024-10-19.csv'
-
-# qual_out = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'swot/swot_nodes_2023-07-01to2024-10-19_bit_qual.csv'
 
 
 # ******************************************************************************

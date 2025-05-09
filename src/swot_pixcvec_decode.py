@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ******************************************************************************
-# swot_pixcvec_decode.py
+# SWOT_Pixcvec_Decode.py
 # ******************************************************************************
 
 # Purpose:
@@ -19,41 +19,12 @@ import geopandas as gpd
 from shapely import Point
 
 
-# # ******************************************************************************
-# # Set file paths
-# # ******************************************************************************
-# # Set input file path
-# nc_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/input/'\
-#     'swot_pixcvec/SWOT_L2_HR_PIXCVec_018_037_230R_20240711T055027_'\
-#     '20240711T055039_PIC0_01.nc'
-
-# utm_in = 32614
-
-# # Set output file path
-# shp_out = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera_agg/swot_rast_diff/SWOT_L2_HR_PIXCVec_018_037_230R_20240711T055027_'\
-#     '20240711T055039_PIC0_01.shp'
-
-# # ******************************************************************************
-# # Set file paths
-# # ******************************************************************************
-# # Set input file path
-# nc_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/input/'\
-#     'swot_pixcvec/SWOT_L2_HR_PIXCVec_020_037_230R_20240821T232036_'\
-#     '20240821T232047_PIC0_01.nc'
-
-# utm_in = 32614
-
-# # Set output file path
-# shp_out = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera_agg/swot_rast_diff/SWOT_L2_HR_PIXCVec_020_037_230R_20240821T232036_'\
-#     '20240821T232047_PIC0_01.shp'
-
 # ******************************************************************************
 # Declaration of variables (given as command line arguments)
 # ******************************************************************************
 # 1 - nc_in
-# 2 - shp_out
+# 2 - utm_in
+# 3 - shp_out
 
 
 # ******************************************************************************

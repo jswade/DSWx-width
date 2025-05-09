@@ -1,10 +1,10 @@
 #!/bin/bash
 #*****************************************************************************
-#sword__dwnl.sh
+#tst_case_dwnl_Wade_etal_2025.sh
 #*****************************************************************************
-
 #Purpose:
-#This script downloads SWORD v16 node and reach files.
+#This scripts downloads Python backends for width computation scripts.
+
 #DOI: xx.xxxx/xxxxxxxxxxxx
 #The files used are available from:
 
@@ -15,7 +15,15 @@
 # - 22 if there was a conversion problem
 # - 44 if one download is not successful
 #Author:
-#Jeffrey Wade, Renato Frasson, Cedric H. David, 2024.
+#Jeffrey Wade, Renato Frasson, Cedric H. David, 2025.
+
+#*****************************************************************************
+#Publication message
+#*****************************************************************************
+echo "********************"
+echo "Reproducing files for: https://doi.org/xx.xxxx/xxxxxxxxx"
+echo "********************"
+
 
 #*****************************************************************************
 #Publication message
@@ -29,78 +37,62 @@ echo "********************"
 
 
 #*****************************************************************************
-#Download SWORD files (netcdf)
+#Download WBT
 #*****************************************************************************
-echo "- Downloading SWORD files"
-#-----------------------------------------------------------------------------
-#Download parameters
-#-----------------------------------------------------------------------------
-URL="https://zenodo.org/records/10013982/files"
-folder="../input/sword/SWORD_v16_netcdf"
-list=("SWORD_v16_netcdf.zip")
+echo "- Downloading WBT"
 
-#-----------------------------------------------------------------------------
-#Download process
-#-----------------------------------------------------------------------------
-mkdir -p $folder
-for file in "${list[@]}"
-do
-    wget -nv -nc $URL/$file -P $folder/
-    if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
-done
+URL="https://www.whiteboxgeo.com/WBT_Darwin/WhiteboxTools_darwin_amd64.zip"
+folder="../"
+zip_file="$folder/$(basename $URL)"
 
-#-----------------------------------------------------------------------------
-#Extract files
-#-----------------------------------------------------------------------------
-unzip -nq "${folder}/${list}" -d "${folder}/${list%.zip}"
-if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+wget -nv -nc $URL -P $folder
+if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
 
-#-----------------------------------------------------------------------------
-#Delete zip file
-#-----------------------------------------------------------------------------
-rm -rf "${folder}/${list}"
-if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+unzip -nq "$zip_file" -d "$folder"
+rm -f "$zip_file"
+if [ $? -gt 0 ] ; then echo "Problem unizpping" >&2 ; exit 22 ; fi
+
+mv "$folder/WhiteboxTools_darwin_amd64/WBT" ../
+if [ $? -gt 0 ]; then echo "Problem moving WBT folder" >&2; exit 22; fi
 
 echo "Success"
 echo "********************"
 
-#*****************************************************************************
-#Done
-#*****************************************************************************
-
 
 #*****************************************************************************
-#Download SWORD files (shp)
+#Download DSWx-Width Zenodo Repository to /input_testing/ and /output_testing/
 #*****************************************************************************
-echo "- Downloading SWORD files"
+echo "- Downloading DSWx-Width repository"
 #-----------------------------------------------------------------------------
 #Download parameters
 #-----------------------------------------------------------------------------
-URL="https://zenodo.org/records/10013982/files"
-folder="../input/sword/SWORD_v16_shp"
-list=("SWORD_v16_shp.zip")
+URL="https://zenodo.org/records/XXXXXXX/files"
+folder=("../input_testing"                                                     \
+        "../output_testing")
+list=("input_testing.zip"                                                      \
+      "output_testing.zip")
 
 #-----------------------------------------------------------------------------
 #Download process
 #-----------------------------------------------------------------------------
 mkdir -p $folder
-for file in "${list[@]}"
-do
-    wget -nv -nc $URL/$file -P $folder/
-    if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
-done
+for ((i = 0; i < ${#list[@]}; i++)); do
 
+    wget -nv -nc $URL/${list[i]} -P $folder
+    if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
+    
 #-----------------------------------------------------------------------------
 #Extract files
 #-----------------------------------------------------------------------------
-unzip -nq "${folder}/${list}" -d "${folder}/${list%.zip}"
-if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
-
+    unzip -nq "${folder[i]}/${list[i]}" -d "${folder[i]}/"
+    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+    
 #-----------------------------------------------------------------------------
-#Delete zip file
+#Delete zip files
 #-----------------------------------------------------------------------------
-rm -rf "${folder}/${list}"
-if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+    rm "${folder[i]}/${list[i]}"
+    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+done
 
 echo "Success"
 echo "********************"

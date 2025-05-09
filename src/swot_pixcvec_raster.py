@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ******************************************************************************
-# swot_pixcvec_raster.py
+# SWOT_Pixcvec_Raster.py
 # ******************************************************************************
 
 # Purpose:
@@ -19,40 +19,6 @@ import rasterio
 import geopandas as gpd
 from rasterio.features import rasterize
 
-
-# # ******************************************************************************
-# # Set file paths
-# # ******************************************************************************
-# # Set input file path
-# pixcvec_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/'\
-#     'output/opera_agg/swot_rast_diff/SWOT_L2_HR_PIXCVec_018_037_230R_'\
-#     '20240711T055027_20240711T055039_PIC0_01.shp'
-
-# opera_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera_agg/conwater/main_river/opera_14N_2024-06-29_2024-07-13_'\
-#     'main_river.tif'
-
-# # Set output file path
-# tif_out = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/'\
-#     'output/opera_agg/swot_rast_diff/SWOT_L2_HR_PIXCVec_018_037_230R_'\
-#     '20240711T055027_20240711T055039_PIC0_01.tif'
-
-# # ******************************************************************************
-# # Set file paths
-# # ******************************************************************************
-# # Set input file path
-# pixcvec_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera_agg/swot_rast_diff/SWOT_L2_HR_PIXCVec_020_037_230R_20240821T232036_'\
-#     '20240821T232047_PIC0_01.shp'
-
-# opera_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera_agg/conwater/main_river/opera_14N_2024-08-10_2024-08-24_'\
-#     'main_river.tif'
-
-# # Set output file path
-# tif_out = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera_agg/swot_rast_diff/SWOT_L2_HR_PIXCVec_020_037_230R_20240821T232036_'\
-#     '20240821T232047_PIC0_01.tif'
 
 # ******************************************************************************
 # Declaration of variables (given as command line arguments)

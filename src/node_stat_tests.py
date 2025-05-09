@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ******************************************************************************
-# node_stat_tests.py
+# Node_Stat_Tests.py
 # ******************************************************************************
 
 # Purpose:
@@ -21,7 +21,7 @@ import pandas as pd
 import geopandas as gpd
 import matplotlib.pyplot as plt
 
-#
+
 ## ******************************************************************************
 ## Set files paths
 ## ******************************************************************************
@@ -104,19 +104,19 @@ comp_all = pd.read_csv(comp_in)
 # H0: median(diff) = 0
 # HA: median(diff) != 0
 
-# Check symmetry in differences, which is required by the test
-plt.figure(figsize=(6, 4))
-plt.boxplot([comp_all.obs_diff], showfliers=False,
-            tick_labels=["Diff"])
-plt.axhline(0, color='gray', alpha=0.2)
-plt.ylabel("Width, m")
-plt.title("Boxplot of width_m and swot_mean")
-plt.show()
+# # Check symmetry in differences, which is required by the test
+# plt.figure(figsize=(6, 4))
+# plt.boxplot([comp_all.obs_diff], showfliers=False,
+#             tick_labels=["Diff"])
+# plt.axhline(0, color='gray', alpha=0.2)
+# plt.ylabel("Width, m")
+# plt.title("Boxplot of width_m and swot_mean")
+# plt.show()
 
 # Perform Wilcoxon signed-rank test
 srt_stat, srt_p_value = wilcoxon(comp_all["width_m"], comp_all["swot_mean"])
-print(f"P-value (Paired Signed-Rank Test): {srt_p_value}")
-print("SWOT Widths are Different than OPERA widths")
+# print(f"P-value (Paired Signed-Rank Test): {srt_p_value}")
+# print("SWOT Widths are Different than OPERA widths")
 
 
 # ******************************************************************************
@@ -132,8 +132,8 @@ n_neg = np.sum(comp_all.obs_diff < 0)
 # Perform paired sign test (binomial test)
 st_p_value = binomtest(min(n_pos, n_neg), n=n_pos + n_neg,
                        p=0.5, alternative='two-sided').pvalue
-print(f"P-value (Paired Sign Test): {st_p_value}")
-print("SWOT Widths are Statistically Larger than OPERA widths")
+# print(f"P-value (Paired Sign Test): {st_p_value}")
+# print("SWOT Widths are Statistically Larger than OPERA widths")
 
 
 # ******************************************************************************
@@ -192,22 +192,22 @@ for i in range(len(node_val)):
 # Count number of nodes that have statistically significant differences
 st_sig = [x < 0.05 for x in st_p_vals]
 srt_sig = [x < 0.05 for x in srt_p_vals]
-print(f"% of Nodes with Significant Difference (Sign Test): \
-      {np.sum(st_sig)/len(st_p_vals)}")
-print(f"% of Nodes with Significant Difference (Signed-Rank Test):\
-      {np.sum(srt_sig)/len(srt_p_vals)}")
+# print(f"% of Nodes with Significant Difference (Sign Test): \
+#       {np.sum(st_sig)/len(st_p_vals)}")
+# print(f"% of Nodes with Significant Difference (Signed-Rank Test):\
+#       {np.sum(srt_sig)/len(srt_p_vals)}")
 
-print(f"Mean Difference for Statistically Different Nodes (Sign Test): \
-      {np.mean(np.array(mean_diff)[st_sig])} (m)")
-print(f"Mean Difference for Not Statistically Different Nodes (Sign Test): \
-      {np.mean(np.array(mean_diff)[~np.array(st_sig)])} (m)")
+# print(f"Mean Difference for Statistically Different Nodes (Sign Test): \
+#       {np.mean(np.array(mean_diff)[st_sig])} (m)")
+# print(f"Mean Difference for Not Statistically Different Nodes (Sign Test): \
+#       {np.mean(np.array(mean_diff)[~np.array(st_sig)])} (m)")
 
-print(f"Mean Difference for Statistically Different Nodes \
-      (Paired Signed-Rank Test): \
-      {np.mean(np.array(mean_diff)[srt_sig])} (m)")
-print(f"Mean Difference for Not Statistically Different Nodes \
-      (Paired Signed-Rank Test): \
-      {np.mean(np.array(mean_diff)[~np.array(srt_sig)])} (m)")
+# print(f"Mean Difference for Statistically Different Nodes \
+#       (Paired Signed-Rank Test): \
+#       {np.mean(np.array(mean_diff)[srt_sig])} (m)")
+# print(f"Mean Difference for Not Statistically Different Nodes \
+#       (Paired Signed-Rank Test): \
+#       {np.mean(np.array(mean_diff)[~np.array(srt_sig)])} (m)")
 
 
 # ******************************************************************************
@@ -253,57 +253,56 @@ srt_percent = \
 # Compute mean median node difference in each width bin
 med_diff_bin = bin_df.groupby("width_bin", observed=False)["med_diff"].mean()
 
+# # Plot percent of values that are statistically different
+# plt.figure(figsize=(10, 6))
+# plt.plot(bin_center, st_percent,
+#          marker='o', c='black', label='Paired Sign Test')
+# plt.plot(bin_center, srt_percent,
+#          marker='o', c='#1984c5', label='Paired Signed-Rank Test')
+# plt.xlabel('Average SWOT/OPERA River Width (m)')
+# plt.ylabel('Percent of Nodes With No Significant Difference in Widths')
+# plt.title('Percent of Nodes Where OPERA/SWOT Widths Agree')
+# plt.ylim([0, 100])
+# plt.legend()
+# plt.show()
 
-# Plot percent of values that are statistically different
-plt.figure(figsize=(10, 6))
-plt.plot(bin_center, st_percent,
-         marker='o', c='black', label='Paired Sign Test')
-plt.plot(bin_center, srt_percent,
-         marker='o', c='#1984c5', label='Paired Signed-Rank Test')
-plt.xlabel('Average SWOT/OPERA River Width (m)')
-plt.ylabel('Percent of Nodes With No Significant Difference in Widths')
-plt.title('Percent of Nodes Where OPERA/SWOT Widths Agree')
-plt.ylim([0, 100])
-plt.legend()
-plt.show()
-
-fig, ax1 = plt.subplots(figsize=(10, 6))
-ax1.plot(bin_center, st_percent, marker='o', c='black',
-         label='Paired Sign Test')
-ax1.plot(bin_center, srt_percent, marker='o', c='#1984c5',
-         label='Paired Signed-Rank Test')
-ax1.set_xlabel('Average SWOT/OPERA River Width (m)')
-ax1.set_ylabel('Percent of Nodes With No Significant Difference in Widths')
-ax1.set_ylim([0, 100])
-ax2 = ax1.twinx()
-ax2.plot(bin_center, ct_bin, marker='o', c='green', label='Number of Nodes',
-         alpha=0.2)
-ax2.set_ylim([0, 20000])
-ax2.set_ylabel('Number of Nodes')
-plt.title('Percent of Nodes Where OPERA/SWOT Widths Agree')
-ax1.legend(loc='upper left')
-ax2.legend(loc='upper right')
-plt.tight_layout()
-plt.show()
+# fig, ax1 = plt.subplots(figsize=(10, 6))
+# ax1.plot(bin_center, st_percent, marker='o', c='black',
+#          label='Paired Sign Test')
+# ax1.plot(bin_center, srt_percent, marker='o', c='#1984c5',
+#          label='Paired Signed-Rank Test')
+# ax1.set_xlabel('Average SWOT/OPERA River Width (m)')
+# ax1.set_ylabel('Percent of Nodes With No Significant Difference in Widths')
+# ax1.set_ylim([0, 100])
+# ax2 = ax1.twinx()
+# ax2.plot(bin_center, ct_bin, marker='o', c='green', label='Number of Nodes',
+#          alpha=0.2)
+# ax2.set_ylim([0, 20000])
+# ax2.set_ylabel('Number of Nodes')
+# plt.title('Percent of Nodes Where OPERA/SWOT Widths Agree')
+# ax1.legend(loc='upper left')
+# ax2.legend(loc='upper right')
+# plt.tight_layout()
+# plt.show()
 
 
-# Plot median node difference by width bin
-plt.figure(figsize=(10, 6))
-plt.axhline(0, color='k', linestyle='--', linewidth=1)
-plt.plot(bin_center, med_diff_bin/bin_center,
-         marker='o', c='black', label='Median Node Difference')
-plt.xlabel('Average SWOT/OPERA River Width (m)')
-plt.ylabel('SWOT - OPERA Width Difference, m')
-plt.ylim([-1, 1])
-plt.legend()
-plt.show()
+# # Plot median node difference by width bin
+# plt.figure(figsize=(10, 6))
+# plt.axhline(0, color='k', linestyle='--', linewidth=1)
+# plt.plot(bin_center, med_diff_bin/bin_center,
+#          marker='o', c='black', label='Median Node Difference')
+# plt.xlabel('Average SWOT/OPERA River Width (m)')
+# plt.ylabel('SWOT - OPERA Width Difference, m')
+# plt.ylim([-1, 1])
+# plt.legend()
+# plt.show()
 
 # ******************************************************************************
 # Posthoc Tests: Mean/Median Difference
 # ******************************************************************************
 # Calculate mean/median difference between SWOT and OPERA
-print(f"Mean Difference: {np.mean(comp_all.obs_diff)} m")
-print(f"Median Difference: {np.median(comp_all.obs_diff)} m")
+# print(f"Mean Difference: {np.mean(comp_all.obs_diff)} m")
+# print(f"Median Difference: {np.median(comp_all.obs_diff)} m")
 
 
 # ******************************************************************************

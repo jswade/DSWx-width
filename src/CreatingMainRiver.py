@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ******************************************************************************
-# 03_CreatingMainRiver_v16.py
+# CreatingMainRiver_.py
 # ******************************************************************************
 
 # Purpose:
@@ -25,28 +25,6 @@ import numpy as np
 from rtree import index
 from rasterio.mask import mask
 from shapely.geometry import box
-
-
-# # ******************************************************************************
-# # Set file paths
-# # ******************************************************************************
-# # Set input file paths
-# clump_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/'        \
-#     'output/opera/clump/'
-
-# voronoi_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'  \
-#     'sword/voronoi/clipped_voronoi_utm12N.shp'
-
-# nodes_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'sword/nodes/target_nodes_utm12N.shp'
-
-# tif_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera/merge/'
-
-# utm_str = '12N'
-
-# conwater_out = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera/conwater/'
 
 
 # ******************************************************************************

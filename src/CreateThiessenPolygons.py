@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ******************************************************************************
-# 01_CreateThiessenPolygons_OS_v16.py
+# CreateThiessenPolygons.py
 # ******************************************************************************
 
 # Purpose:
@@ -21,20 +21,6 @@ import pandas as pd
 import geopandas as gpd
 from scipy.spatial import Voronoi
 from shapely.geometry import Polygon, box
-
-
-# ******************************************************************************
-# Set file paths
-# ******************************************************************************
-# # Set paths to shapefiles
-# nodes_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'sword/nodes/target_nodes_utm15N.shp'
-
-# ext_buff_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/'\
-#     'output/sword/buffers/ext_dist_buffer_utm15N.shp'
-
-# voronoi_out = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/'\
-#     'output/sword/voronoi/clipped_voronoi_utm15N.shp'
 
 
 # ******************************************************************************

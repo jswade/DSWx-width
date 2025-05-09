@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ******************************************************************************
-# opera_dwnl.py
+# OPERA_Dwnl.py
 # ******************************************************************************
 
 # Purpose:
@@ -22,34 +22,15 @@ import earthaccess
 import requests
 
 
-# # ******************************************************************************
-# # Set file paths
-# # ******************************************************************************
-# # Set input file paths
-# target_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/input/' \
-#             'shpfiles/missouri_area.shp'
-
-# node_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'sword/nodes/'
-
-# date1 = '2023-07-01'
-# date2 = '2024-10-19'
-
-# # Set output file paths
-# opera_out = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/input/' \
-#     'opera/conf/'
-
-# tile_out = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/input/'\
-#     'opera_tiles/opera_sentinel2_tile_boundaries.kml'
-
-
 # ******************************************************************************
 # Declaration of variables (given as command line arguments)
 # ******************************************************************************
 # 1 - target_in
-# 2 - date1
-# 3 - date2
-# 4 - opera_out
+# 2 - node_in
+# 3 - date1
+# 4 - date2
+# 5 - opera_out
+# 6 - tile_out
 
 
 # ******************************************************************************

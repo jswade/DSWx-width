@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ******************************************************************************
-# 04_Clump_v16.py
+# Clump.py
 # ******************************************************************************
 
 # Purpose:
@@ -29,11 +29,12 @@ from geopandas import GeoDataFrame
 from shapely.geometry import shape
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
+
 # ******************************************************************************
 # Set file paths
 # ******************************************************************************
 # Set location of WBT directory
-work_dir = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/'
+work_dir = '../'
 os.chdir(work_dir)
 sys.path.append(work_dir)
 
@@ -43,23 +44,6 @@ wbt = WhiteboxTools()
 wbe = WbEnvironment()
 wbt.work_dir = work_dir
 wbt.set_verbose_mode(True)
-
-
-# # ******************************************************************************
-# # Set files paths (OPERA)
-# # ******************************************************************************
-# # Set paths to files
-# tif_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera/merge/'
-
-# voronoi_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/'\
-#     'output/sword/voronoi/clipped_voronoi_utm15N.shp'
-
-# utm_str = '15N'
-
-# # Set paths to outputs
-# clump_out = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/'       \
-#             'output/opera/clump/'
 
 
 # ******************************************************************************

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ******************************************************************************
-# Download_SWOT_Node_Data_v16.py
+# Download_SWOT_Node_Data.py
 # ******************************************************************************
 
 # Purpose:
@@ -27,27 +27,6 @@ import earthaccess
 from shapely.geometry import Polygon, Point
 
 
-## ******************************************************************************
-## Set files paths
-## ******************************************************************************
-## Set input directory to SWORD nodes
-#node_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#    'sword/nodes/'
-#
-## Set beginning and end dates for data acquisition
-#date1 = '2023-07-01'
-#date2 = '2024-10-19'
-#
-## Set SWOT orbit input file
-## https://github.com/CNES/search_swot/tree/master/search_swot
-#swot_orbit_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/'\
-#    'input/swot_orbit/SWOT_orbit.nc'
-#
-## Set output file path
-#swot_out = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#    'swot/'
-
-
 # ******************************************************************************
 # Declaration of variables (given as command line arguments)
 # ******************************************************************************
@@ -62,8 +41,8 @@ from shapely.geometry import Polygon, Point
 # Get command line arguments
 # ******************************************************************************
 IS_arg = len(sys.argv)
-if IS_arg != 5:
-    print('ERROR - 4 arguments must be used')
+if IS_arg != 6:
+    print('ERROR - 5 arguments must be used')
     raise SystemExit(22)
 
 node_in = sys.argv[1]
@@ -215,30 +194,6 @@ for i in range(len(node_id)):
     # Drop columns that contain 'units'
     hydrocron_df = hydrocron_data.drop(columns=hydrocron_data.
                                        filter(regex='units').columns)
-
-    # # --------------------------------------------------------------------------
-    # # Fill in missing xtrck distance values
-    # # --------------------------------------------------------------------------
-    # # If a non-detect width is caused by xtrk distance, all observations of the
-    # # node in a specific pass will be no_data
-
-    # # If a non-detect width is caused by poor water detection, other obs
-    # # of the node in the same pass but different cycle can be used to infer the
-    # # xtrk distance
-
-    # # Find rows width no_data widths
-    # nan_obs = hydrocron_df[hydrocron_df.time_str == 'no_data']
-
-    # # Find mean xtrk distance by pass_id for valid observations\
-    # val_df = hydrocron_df[hydrocron_df.time_str != 'no_data']
-    # val_pass_ids = val_df.pass_id.unique()
-    # pass_xtrk = val_df.groupby('pass_id')['xtrk_dist'].mean().to_dict()
-
-    # # Find no_data obs with valid xtrk distance in another cycle
-    # nan_obs_fil = nan_obs[nan_obs.pass_id.isin(val_pass_ids)]
-
-    # # Infill valid xtck value
-    # hydrocron_df.loc[:, 'xtrk_dist'] = nan_obs_fil['pass_id'].map(pass_xtrk)
 
     # Append df to list
     df_list.append(hydrocron_df)

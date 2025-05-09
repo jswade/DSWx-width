@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ******************************************************************************
-# 01_SelectSWORDFeatures_v16.py
+# SelectSWORDFeatures.py
 # ******************************************************************************
 
 # Purpose:
@@ -21,24 +21,6 @@ import geopandas as gpd
 from shapely import Point
 
 
-# # ******************************************************************************
-# # Set file paths
-# # ******************************************************************************
-# # Set input filepaths
-# node_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/input/'\
-#     'sword/SWORD_v16_netcdf/na_sword_v16.nc'
-
-# utm_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/input/'\
-#     'utm_zones/missouri_utm15N.shp'
-
-# node_str = '7429'
-
-# utm_str = '15N'
-
-# node_out = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/' \
-#             'sword/nodes/target_nodes_utm15N.shp'
-
-
 # ******************************************************************************
 # Declaration of variables (given as command line arguments)
 # ******************************************************************************
@@ -47,6 +29,7 @@ from shapely import Point
 # 3 - node_str
 # 4 - utm_str
 # 5 - node_out
+
 
 # ******************************************************************************
 # Get command line arguments
@@ -147,7 +130,7 @@ utm_buffer['geometry'] = utm_shp.geometry.buffer(20000)
 # Get region of utm_buffer that doesnt overlap with utm_shp
 utm_buffer_diff = utm_buffer.copy()
 utm_buffer_diff['geometry'] =\
-    utm_buffer.geometry.difference(utm_shp.unary_union)
+    utm_buffer.geometry.difference(utm_shp.union_all())
 
 # Set zone to UTM zone + 'b' to indicate intersection with buffer only
 utm_buffer_diff['ZONE'] = utm_buffer_diff['ZONE'] + 'b'

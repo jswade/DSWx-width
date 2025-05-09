@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ******************************************************************************
-# ConfReclass_OPERA_v16.py
+# ConfReclass_OPERA.py
 # ******************************************************************************
 
 # Purpose:
@@ -40,22 +40,6 @@ if IS_arg != 4:
 tif_in = sys.argv[1]
 pw_opt = sys.argv[2]
 reclass_out = sys.argv[3]
-
-
-# # ******************************************************************************
-# # Set files paths (OPERA)
-# # ******************************************************************************
-# # Set paths to files
-# tif_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/input/'\
-#     'opera/conf/'
-
-# # Set Partial Water Option to Aggressive or Conservative
-# pw_opt = 'cons'
-# # pw_opt = 'agg'
-
-# # Set paths to outputs
-# reclass_out = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/'\
-#     'output/opera_agg/conf_reclass/'
 
 
 # ******************************************************************************

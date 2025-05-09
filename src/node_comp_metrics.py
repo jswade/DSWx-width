@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ******************************************************************************
-# node_comp_metrics.py
+# Mode_Comp_Metrics.py
 # ******************************************************************************
 
 # Purpose:
@@ -18,26 +18,6 @@ import numpy as np
 import pandas as pd
 import geopandas as gpd
 import matplotlib.pyplot as plt
-
-
-# ******************************************************************************
-# Set files paths
-# ******************************************************************************
-comp_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-    'opera/swot_comp/opera_swot_comp_2023-07-01to2024-10-19.csv'
-
-# Set input to node shapefile
-node_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-    'sword/nodes/'
-
-# Set output file paths
-node_out_csv = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/'\
-    'output/opera/node_metrics/swot_opera_node_metrics_2023-07-01'\
-    'to2024-10-19.csv'
-
-node_out_shp = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/'\
-    'output/opera/node_metrics/swot_opera_node_metrics_2023-07-01'\
-    'to2024-10-19.shp'
 
 
 # ******************************************************************************

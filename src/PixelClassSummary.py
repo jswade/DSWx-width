@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ******************************************************************************
-# 06_PixelClassSummary_v16.py
+# PixelClassSummary.py
 # ******************************************************************************
 
 # Purpose:
@@ -24,23 +24,6 @@ import rasterio
 from rasterstats import zonal_stats
 from rasterio.warp import reproject, Resampling, calculate_default_transform
 from rasterio.io import MemoryFile
-
-
-# # ******************************************************************************
-# # Set file paths
-# # ******************************************************************************
-# # Set input file paths
-# main_river_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/'\
-#     'output/opera/conwater/main_river/'
-
-# voronoi_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/'\
-#     'output/sword/voronoi/clipped_voronoi_utm12N.shp'
-
-# utm_str = '12N'
-
-# # Set output file path
-# csv_out = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera/pixel_num/'
 
 
 # ******************************************************************************

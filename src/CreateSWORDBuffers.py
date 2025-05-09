@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ******************************************************************************
-# 02_Create_SWORD_Buffers_v16.py
+# Create_SWORD_Buffers.py
 # ******************************************************************************
 
 # Purpose:
@@ -17,18 +17,6 @@
 # ******************************************************************************
 import sys
 import geopandas as gpd
-
-
-# # ******************************************************************************
-# # Set file paths
-# # ******************************************************************************
-# # Set input file paths
-# nodes_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/' \
-#             'sword/nodes/target_nodes_utm15N.shp'
-
-# # Set output file path
-# buff_out = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/' \
-#             'sword/buffers/ext_dist_buffer_utm15N.shp'
 
 
 # ******************************************************************************

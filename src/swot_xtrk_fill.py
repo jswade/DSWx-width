@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ******************************************************************************
-# swot_xtrk_fill.py
+# SWOT_Xtrk_Fill.py
 # ******************************************************************************
 
 # Purpose:
@@ -14,28 +14,6 @@
 import sys
 import pandas as pd
 import geopandas as gpd
-
-
-# # ******************************************************************************
-# # Set files paths
-# # ******************************************************************************
-# # Set input directory to SWORD nodes
-# swot_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'swot/swot_nodes_2023-07-01to2024-10-19.csv'
-
-# # Set SWOT nadir track input shapefile
-# # https://www.aviso.altimetry.fr/en/missions/current-missions/swot/orbit.html
-# nadir_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/input/'\
-#     'swot_orbit/swot_science_hr_Aug2021-v05_shapefile_nadir/'\
-#     'swot_science_hr_2.0s_4.0s_Aug2021-v5_nadir.shp'
-
-# node_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/' \
-#           'sword/nodes/target_nodes_utm15N.shp'
-
-# utm_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/input/'\
-#     'utm_zones/missouri_utm15N.shp'
-
-# utm_str = '15N'
 
 
 # ******************************************************************************

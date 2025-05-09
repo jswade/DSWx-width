@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ******************************************************************************
-# 08_WidthAggregation_v16.py
+# WidthAggregation.py
 # ******************************************************************************
 
 # Purpose:
@@ -20,18 +20,6 @@ import glob
 import sys
 import re
 import os
-
-
-# # ******************************************************************************
-# # Set file paths
-# # ******************************************************************************
-# # Set input file paths
-# width_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/' \
-#     'opera/width_utm/'
-
-# # Set output file path
-# width_out = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera/width/'
 
 
 # ******************************************************************************

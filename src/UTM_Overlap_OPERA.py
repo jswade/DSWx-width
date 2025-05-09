@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ******************************************************************************
-# OPERA_UTM_Zones_v16.py
+# OPERA_UTM_Zones.py
 # ******************************************************************************
 
 # Purpose:
@@ -22,20 +22,6 @@ import re
 import shapely
 from rasterio.warp import transform_bounds
 import rasterio
-
-
-# # ******************************************************************************
-# # Set files paths
-# # ******************************************************************************
-# # Set input directory to OPERA tiles
-# opera_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera/temp_agg/'
-
-# utm_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/input/'\
-#     'utm_zones/'
-
-# tile_out = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera/utm_overlap/opera_utm_overlap.csv'
 
 
 # ******************************************************************************

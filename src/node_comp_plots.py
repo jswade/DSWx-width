@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ******************************************************************************
-# node_comp_plots.py
+# Node_Comp_Plots.py
 # ******************************************************************************
 
 # Purpose:
@@ -19,25 +19,6 @@ import matplotlib.pyplot as plt
 import glob
 from matplotlib.colors import LogNorm
 import matplotlib.patches as mpatches
-
-
-# # ******************************************************************************
-# # Set files paths
-# # ******************************************************************************
-# # Set input directory to width paired observations
-# comp_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera/swot_comp/opera_swot_comp_2023-07-01to2024-10-19.csv'
-
-# # Set input directory to SWOT observations
-# swot_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'swot/swot_nodes_2023-07-01to2024-10-19.csv'
-
-# qual_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'swot/swot_nodes_2023-07-01to2024-10-19_bit_qual.csv'
-
-# # Set input directiony to OPERA widths
-# opera_in = '/Users/jwade/jpl/computing/opera/RiverWidths_v16/missouri/output/'\
-#     'opera/width/'
 
 
 # ******************************************************************************
