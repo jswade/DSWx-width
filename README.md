@@ -20,7 +20,17 @@ DSWx-width aims to:
 The DSWx-width dataset is publicly available at https://zenodo.org/records/15391839.
 
 ## Shell Script Documentation
-### Testing Shell Scripts
+### `tst_case_dwnl_Wade_etal_2025.sh`
+### Purpose
+The `tst_case_dwnl_Wade_etal_2025.sh` script is used to download testing data
+from Zenodo for a limited region for automated testing on key functions in DSWx-width.
+
+### `tst_case_repr_Wade_etal_2025.sh`
+The `tst_case_repr_Wade_etal_2025.sh` script is used to perform individual computations and compare the results to expected outputs for automated testing of key functions in DSWx-width.
+
+### `tst_pub_dwnl_all_Wade_etal_2025.sh`
+
+### `tst_pub_repr_all_Wade_etal_2025.sh`
 
 
 ## Installation with Docker
