@@ -26,11 +26,20 @@ The `tst_case_dwnl_Wade_etal_2025.sh` script is used to download testing data
 from Zenodo for a limited region for automated testing on key functions in DSWx-width.
 
 ### `tst_case_repr_Wade_etal_2025.sh`
+### Purpose
 The `tst_case_repr_Wade_etal_2025.sh` script is used to perform individual computations and compare the results to expected outputs for automated testing of key functions in DSWx-width.
 
 ### `tst_pub_dwnl_all_Wade_etal_2025.sh`
+### Purpose
+The `tst_pub_dwnl_all_Wade_etal_2025.sh` script is used to download all input data
+to recreate the DSWx-width analysis in its entirety. If executed, this script will take 
+and extremely long time to run, as it is downloading a large volume of SWOT and OPERA DSWx 
+data.
 
 ### `tst_pub_repr_all_Wade_etal_2025.sh`
+### Purpose
+The `tst_pub_repr_all_Wade_etal_2025.sh` script is used to recreate the outputs of 
+the DSWx-width analysis in its entirety.
 
 
 ## Installation with Docker
