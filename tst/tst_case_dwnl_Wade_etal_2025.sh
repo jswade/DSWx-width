@@ -7,7 +7,7 @@
 
 #DOI: xx.xxxx/xxxxxxxxxxxx
 #The files used are available from:
-#DOI doi.org/10.5281/zenodo.15391838
+#DOI doi.org/10.5281/zenodo.15391839
 
 #Zenodo
 #DOI:
@@ -30,7 +30,7 @@ echo "********************"
 #Publication message
 #*****************************************************************************
 echo "********************"
-echo "Downloading files from:   https://doi.org/10.5281/zenodo.15391838"
+echo "Downloading files from:   https://doi.org/10.5281/zenodo.15391839"
 echo "which correspond to   :   https://doi.org/xx.xxxx/xxxxxxxxxxxx"
 echo "These files are under a CC BY-NC-SA 4.0 license."
 echo "Please cite these two DOIs if using these files for your publications."
@@ -67,7 +67,7 @@ echo "- Downloading DSWx-Width repository"
 #-----------------------------------------------------------------------------
 #Download parameters
 #-----------------------------------------------------------------------------
-URL="https://zenodo.org/records/15391838/files"
+URL="https://zenodo.org/records/15391839/files"
 input_testing.zip
 folder=("../input_testing"                                                     \
         "../output_testing")

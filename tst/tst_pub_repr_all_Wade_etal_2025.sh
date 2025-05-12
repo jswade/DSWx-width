@@ -9,7 +9,7 @@
 #DOI: xx.xxxx/xxxxxxxxxxxx
 
 #Zenodo
-#DOI: xx.xxxx/xxxxxxxxxxxx
+#DOI: 10.5281/zenodo.15391839
 #The following are the possible arguments:
 # - No argument: all unit tests are run
 # - One unique unit test number: this test is run

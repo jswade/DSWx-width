@@ -19,7 +19,7 @@ DSWx-width aims to:
 
 The DSWx-width dataset is publicly available at https://zenodo.org/records/15391839.
 
-## Script Documentation
+## Shell Script Documentation
 ### Testing Shell Scripts
 
 
