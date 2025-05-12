@@ -9,7 +9,7 @@
 #DOI: xx.xxxx/xxxxxxxxxxxx
 
 #Zenodo
-#DOI: xx.xxxx/xxxxxxxxxxxx
+#DOI: 10.5281/zenodo.15391838
 #The following are the possible arguments:
 # - No argument: all unit tests are run
 # - One unique unit test number: this test is run
@@ -773,40 +773,6 @@ echo "- Comparing OPERA-SWOT comparisons (.csv)"
 ../src/tst_cmp.py                                                              \
     ../output_testing/opera/swot_comp/opera_swot_comp_2023-07-01to2024-10-19.csv\
     ../output_test/opera/swot_comp/opera_swot_comp_2023-07-01to2024-10-19.csv  \
-    > $cmp_file
-x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
-
-rm -f $cmp_file
-rm -f $run_file
-echo "Success"
-echo "********************"
-fi
-
-
-#*****************************************************************************
-#Run statistical tests on OPERA SWOT paired observations
-#*****************************************************************************
-unt=$((unt+1))
-if (("$unt" >= "$fst")) && (("$unt" <= "$lst")) ; then
-echo "Running unit test $unt/$tot"
-
-run_file=tmp_run_$unt.txt
-cmp_file=tmp_cmp_$unt.txt
-
-mkdir -p "../output_test/opera/stat_test"
-
-echo "- Running statistical tests on SWOT and OPERA observations"
-../src/Node_Stat_Tests.py                                                      \
-    ../output_testing/opera/swot_comp/opera_swot_comp_2023-07-01to2024-10-19.csv\
-    ../output_testing/sword/nodes/                                             \
-    ../output_test/opera/stat_test/node_stat_test.shp                          \
-    > $run_file
-x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
-
-echo "- Comparing OPERA-SWOT comparisons (.csv)"
-../src/tst_cmp.py                                                              \
-    ../output_testing/opera/stat_test/node_stat_test.shp                       \
-    ../output_test/opera/stat_test/node_stat_test.shp                          \
     > $cmp_file
 x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
 

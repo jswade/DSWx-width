@@ -596,6 +596,8 @@ echo "Running unit test $unt/$tot"
 
 run_file=tmp_run_$unt.txt
 
+mkdir -p "../output_test/swot"
+
 echo "- Decoding SWOT bitwise flags"
 ../src/SWOT_Bitwise_Qual.py                                                    \
     ../output_test/swot/swot_nodes_2023-07-01to2024-10-19.csv                  \
@@ -618,35 +620,14 @@ echo "Running unit test $unt/$tot"
 
 run_file=tmp_run_$unt.txt
 
+mkdir -p "../output_test/opera/swot_comp"
+
 echo "- Pairing SWOT and OPERA node observations"
 ../src/Node_Comp_Bitwise.py                                                    \
     ../output_test/swot/swot_nodes_2023-07-01to2024-10-19.csv                  \
     ../output_test/swot/swot_nodes_2023-07-01to2024-10-19_bit_qual.csv         \
     ../output_test/opera/width                                                 \
     ../output_test/opera/swot_comp/opera_swot_comp_2023-07-01to2024-10-19.csv \
-    > $run_file
-x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
-
-rm -f $run_file
-echo "Success"
-echo "********************"
-fi
-
-
-#*****************************************************************************
-#Run statistical tests on OPERA SWOT paired observations
-#*****************************************************************************
-unt=$((unt+1))
-if (("$unt" >= "$fst")) && (("$unt" <= "$lst")) ; then
-echo "Running unit test $unt/$tot"
-
-run_file=tmp_run_$unt.txt
-
-echo "- Running statistical tests on SWOT and OPERA observations"
-../src/Node_Stat_Tests.py                                                      \
-    ../output_test/opera/swot_comp/opera_swot_comp_2023-07-01to2024-10-19.csv  \
-    ../output_test/sword/nodes/                                                \
-    ../output_test/opera/stat_test/node_stat_test.shp                          \
     > $run_file
 x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
 
@@ -664,6 +645,8 @@ if (("$unt" >= "$fst")) && (("$unt" <= "$lst")) ; then
 echo "Running unit test $unt/$tot"
 
 run_file=tmp_run_$unt.txt
+
+mkdir -p "../output_test/opera/node_metrics"
 
 echo "- Calculating summary metrics at each node"
 ../src/Node_Comp_Metrics.py                                                    \
