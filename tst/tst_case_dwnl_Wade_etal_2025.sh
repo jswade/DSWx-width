@@ -67,7 +67,8 @@ echo "- Downloading DSWx-Width repository"
 #-----------------------------------------------------------------------------
 #Download parameters
 #-----------------------------------------------------------------------------
-URL="https://zenodo.org/records/15391838/files"
+URL="https://zenodo.org/records/15391838/files/"
+input_testing.zip
 folder=("../input_testing"                                                     \
         "../output_testing")
 list=("input_testing.zip"                                                      \
@@ -79,7 +80,7 @@ list=("input_testing.zip"                                                      \
 mkdir -p $folder
 for ((i = 0; i < ${#list[@]}; i++)); do
 
-    wget -nv -nc $URL/${list[i]} -P $folder
+    wget -nv -nc $URL/${list[i]} -P ${folder[i]}
     if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
     
 #-----------------------------------------------------------------------------
