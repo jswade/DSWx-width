@@ -13,11 +13,15 @@ DSWx-width is a collection of Python and bash shell scripts that ...
 
 DSWx-width aims to:
 
-1.  
-2.  
-3.  
+1. Aggregate and prepare OPERA DSWx imagery for width computation.
+2. Compute widths from the DSWx product using an automated workflow.
+3. Provide comparisons between SWOT- and DSWx-derived widths in the Missouri River Basin.
 
-The DSWx-width dataset is publicly available at https://zenodo.org/records/xxxx.
+The DSWx-width dataset is publicly available at https://zenodo.org/records/15391839.
+
+## Script Documentation
+### Testing Shell Scripts
+
 
 ## Installation with Docker
 Installing DSWx-width is **by far the easiest with Docker**. This document was
@@ -100,10 +104,10 @@ $ sudo apt-get install -y --no-install-recommends $(grep -v -E '(^#|^$)' require
 > one by one, for example:
 >
 > ```
-> $ sudo apt-get install -y --no-install-recommends python3.9
+> $ sudo apt-get install -y --no-install-recommends python3.10
 >```
 
-Also make sure that `python3` points to `python3.9`:
+Also make sure that `python3` points to `python3.10`:
 
 ```
 $ sudo rm -f /usr/bin/python3
