@@ -60,7 +60,8 @@ using NASA EarthAccess.
   * Outputs:  
     * Output folder for downloaded OPERA DSWx CONF layers (`.tif`)  
     * File containing OPERA DSWx tile boundaries (`.kml`)  
-  
+
+&nbsp;  
   
 **`Download_SWOT_Node_Data_Pass.py`**  
 Downloads SWOT L2 HR River Single Pass observations for target nodes between
@@ -75,235 +76,275 @@ specified dates using NASA PODAAC's Hydrocron tool.
   * Outputs:  
     * Output folder for downloaded SWOT observations (`.csv`)  
 
-## `SelectSWORDFeatures.py`  
+&nbsp;  
+
+**`SelectSWORDFeatures.py`**  
 Selects SWORD nodes within target area, subdivided into separate shapefiles by their 
 UTM zone.
 
-**Inputs:**
-- SWORD node file for given region (`.nc`)
-- Shapefiles delineating UTM zone boundaries (`.shp`)
-- Starting digits SWORD node ids for given region (7429 for Missouri River) (`str`)
-- Selected UTM zone (`str`)
+  * Inputs:  
+    * SWORD node file for given region (`.nc`)
+    * Shapefiles delineating UTM zone boundaries (`.shp`)
+    * Starting digits SWORD node ids for given region (7429 for Missouri River) (`str`)
+    * Selected UTM zone (`str`)
 
-**Outputs:**
-- Target SWORD node file for given UTM zone (`.shp`)
+  * Outputs:  
+    * Target SWORD node file for given UTM zone (`.shp`)
 
-## `CreateSWORDBuffers.py`   
+&nbsp;  
+
+**`CreateSWORDBuffers.py`**   
 Generates extreme distance buffers surrounding SWORD nodes, delineating the maximum 
 distance for pixel-to-node assignment.
 
-**Inputs:**
-- Target SWORD node file for given UTM zone (`.shp`)
+  * Inputs:
+    * Target SWORD node file for given UTM zone (`.shp`)
 
-**Outputs:**
-- Buffers for SWORD nodes for a given UTM zone (`.shp`)
+  * Outputs:**
+    * Buffers for SWORD nodes for a given UTM zone (`.shp`)
+
+&nbsp;  
 
 ## `CreateThiessenPolygons.py`   
 Generates Thiessen polygons surrounding SWORD nodes, delineating the zone of influence 
 of each node for pixel-to-node assignment.
 
-**Inputs:**
-- Target SWORD node file for given UTM zone (`.shp`)
-- Buffers for SWORD nodes for a given UTM zone (`.shp`)
+  * Inputs:  
+    * Target SWORD node file for given UTM zone (`.shp`)
+    * Buffers for SWORD nodes for a given UTM zone (`.shp`)
 
-**Outputs:**
-- Thiessen polygons for SWORD nodes for a given UTM zone (`.shp`)
+  * Outputs:  
+    * Thiessen polygons for SWORD nodes for a given UTM zone (`.shp`)
+
+&nbsp;  
 
 ## `ConfReclass_OPERA.py`    
 Reclassifies OPERA DSWx CONF pixel values to simpler WTR format (open water/partial 
 water) for main river identification and width computation.
 
-**Inputs:**
-- Folder containing downloaded OPERA DSWx CONF layers (`.tif`)
-- Reclassification strategy ("cons" or "agg") (`str`)
+  * Inputs:  
+    * Folder containing downloaded OPERA DSWx CONF layers (`.tif`)
+    * Reclassification strategy ("cons" or "agg") (`str`)
 
-**Outputs:**
-- Output folder for reclassified DSWx layers (`.tif`)
+  * Outputs:  
+    * Output folder for reclassified DSWx layers (`.tif`)
+
+&nbsp;  
 
 ## `TempAgg_OPERA.py`   
 Temporally aggregates reclassified DSWx layers over specified time window to remove 
 influence of clouds.
 
-**Inputs:**
-- Folder containing reclassified DSWx layers (`.tif`)
-- Starting date of study period (`str`)
-- Ending date of study period (`str`)
-- Length of temporal aggregation window (`int`)
+  * Inputs
+    * Folder containing reclassified DSWx layers (`.tif`)
+    * Starting date of study period (`str`)
+    * Ending date of study period (`str`)
+    * Length of temporal aggregation window (`int`)
 
-**Outputs:**
-- Output folder for temporally aggregated DSWx layers (`.tif`)
+  * Outputs
+    * Output folder for temporally aggregated DSWx layers (`.tif`)
 
 ## `UTM_Overlap_OPERA.py`    
 Identifies overlap of OPERA DSWx tiles with UTM zones for future tile merging.
 
-**Inputs:**
-- Folder containing temporally aggregated DSWx layers (`.tif`)
-- Folder containing shapefiles of UTM zones (`.shp`)
+  * Inputs
+    * Folder containing temporally aggregated DSWx layers (`.tif`)
+    * Folder containing shapefiles of UTM zones (`.shp`)
 
-**Outputs:**
-- File listing the OPERA DSWx tile ids for each target UTM zone (`.csv`)
+  * Outputs:
+    * File listing the OPERA DSWx tile ids for each target UTM zone (`.csv`)
+
+&nbsp;  
 
 ## `SpatialAgg_OPERA.py`    
 Spatially merges temporally aggregated OPERA DSWx layers for each aggregation
 window and UTM zone.
 
-**Inputs:**
-- Folder containing temporally aggregated DSWx layers (`.tif`)
-- File listing the OPERA DSWx tile ids for each target UTM zone (`.csv`)
-- Selected UTM zone (`str`)
+  * Inputs:  
+    * Folder containing temporally aggregated DSWx layers (`.tif`)
+    * File listing the OPERA DSWx tile ids for each target UTM zone (`.csv`)
+    * Selected UTM zone (`str`)
 
-**Outputs:**
-- Output folder for merged DSWx layers for each aggregation window and UTM Zone
+  * Outputs:  
+    * Output folder for merged DSWx layers for each aggregation window and UTM Zone
 (`.tif`)
+
+&nbsp;  
 
 ## `Clump.py`    
 Clumps regions of DSWx pixels with the same value in preparation for main river identification.
 
-**Inputs:**
-- Folder containing merged DSWx layers (`.tif`)
-- Shapefile of node Thiessen polygons for a given UTM zone (`.shp`)
-- Selected UTM zone (`str`)
+  * Inputs:  
+    * Folder containing merged DSWx layers (`.tif`)
+    * Shapefile of node Thiessen polygons for a given UTM zone (`.shp`)
+    * Selected UTM zone (`str`)
 
-**Outputs:**
-- Output folder for clumped DSWx rasters and shapefiles for each aggregation window and UTM Zone
+  * Outputs:  
+    * Output folder for clumped DSWx rasters and shapefiles for each aggregation window and UTM Zone
 (`.shp` and `.tif`)
+
+&nbsp;  
 
 ## `CreatingMainRiver.py`   
 Identifies primary connected river channel from DSWx imagery, differentiated from disconnected 
 open water in the proximal floodplain.
 
-**Inputs:**
-- Folder containing clumped DSWx layers (`.tif`)
-- Shapefile of node Thiessen polygons for a given UTM zone (`.shp`)
-- Shapefile of SWORD nodes for a given UTM zone (`.shp`)
-- Folder containing merged DSWx layers (`.tif`)
-- Selected UTM zone (`str`)
+  * Inputs:  
+    * Folder containing clumped DSWx layers (`.tif`)
+    * Shapefile of node Thiessen polygons for a given UTM zone (`.shp`)
+    * Shapefile of SWORD nodes for a given UTM zone (`.shp`)
+    * Folder containing merged DSWx layers (`.tif`)
+    * Selected UTM zone (`str`)
 
-**Outputs:**
-- Output folder for rasters identifying open water pixels belonging to main channel, 
+  * Outputs:  
+    * Output folder for rasters identifying open water pixels belonging to main channel, 
 reclassified rasters of pixel values for main channel, and rasters differentiating connected
 and unconnected open and partial water pixels for each UTM zone (`.shp` and `.tif`)
+
+&nbsp;  
 
 ## `PixelClassSummary.py`   
 Counts the number of DSWx pixels of each type corresponding to each target SWORD node 
 for each temporal aggregation window.
 
-**Inputs:**
-- Folder containing DSWx main river rasters (`.tif`)
-- Shapefile of node Thiessen polygons for a given UTM zone (`.shp`)
-- Selected UTM zone (`str`)
+  * Inputs:  
+    * Folder containing DSWx main river rasters (`.tif`)
+    * Shapefile of node Thiessen polygons for a given UTM zone (`.shp`)
+    * Selected UTM zone (`str`)
 
-**Outputs:**
+  * Outputs:  
 - Output folder for files containing pixel counts corresponding to SWORD nodes
 (`.csv`)
+
+&nbsp;  
 
 ## `ThiessenWidthExtraction.py`   
 Converts pixels counts to river width measurements for each SWORD node and for each 
 temporal aggregation window.
 
-**Inputs:**
-- Folder of files containing pixel counts corresponding to SWORD nodes (`.csv`)
-- Selected UTM zone (`str`)
+  * Inputs:  
+    * Folder of files containing pixel counts corresponding to SWORD nodes (`.csv`)
+    * Selected UTM zone (`str`)
 
-**Outputs:**
-- Output folder for files containing river widths corresponding to SWORD nodes (`.csv`)
+  * Outputs:  
+    * Output folder for files containing river widths corresponding to SWORD nodes (`.csv`)
+
+&nbsp;  
 
 ## `WidthAggregation.py`   
 Combines river width files for each UTM zone and temporal aggregation to a single 
 file for each time window.
 
-**Inputs:**
-- Folder of files containing pixel counts corresponding to SWORD nodes (`.csv`)
-- Selected UTM zone (`str`)
+  * Inputs:  
+    * Folder of files containing pixel counts corresponding to SWORD nodes (`.csv`)
+    * Selected UTM zone (`str`)
 
-**Outputs:**
-- Output folder for files containing river widths corresponding to SWORD nodes (`.csv`)
+  * Outputs:  
+    * Output folder for files containing river widths corresponding to SWORD nodes (`.csv`)
+
+&nbsp;  
 
 ## `SWOT_Pixcvec_Decode.py`   
 Transforms SWOT PIXCVec point cloud observations from `.nc` to `.shp`.
 
-**Inputs:**
-- SWOT PIXCVec point cloud layer (`.nc`)
-- CRS EPSG of UTM zone (`str`)
+  * Inputs:  
+    * SWOT PIXCVec point cloud layer (`.nc`)
+    * CRS EPSG of UTM zone (`str`)
 
-**Outputs:**
-- Output folder for files containing river widths corresponding to SWORD nodes (`.csv`)
+  * Outputs:  
+    * Output folder for files containing river widths corresponding to SWORD nodes (`.csv`)
+
+&nbsp;  
 
 ## `SWOT_Pixcvec_Raster.py`   
 Converts SWOT PIXCVec point cloud shapefile to raster that matches the spatial resolution
 of OPERA DSWx layers.
 
-**Inputs:**
-- SWOT PIXCVec point cloud shapefile (`.shp`)
-- Raster of DSWx main river corresponding to date of SWOT PIXCVec observation (`.tif`)
+  * Inputs:  
+    * SWOT PIXCVec point cloud shapefile (`.shp`)
+    * Raster of DSWx main river corresponding to date of SWOT PIXCVec observation (`.tif`)
 
-**Outputs:**
-- Rasterized SWOT PIXCVec point cloud (`.tif`)
+  * Outputs:  
+    * Rasterized SWOT PIXCVec point cloud (`.tif`)
 
-## `Raster_Diff.py`   
-Compares OPERA DSWx main river raster to SWOT PIXCVec raster to identify differences 
-in water detection.
-
-**Inputs:**
-- SWOT PIXCVec point cloud raster (`.shp`)
-- Raster of DSWx main river corresponding to date of SWOT PIXCVec observation (`.tif`)
-
-**Outputs:**
-- Raster of difference between OPERA DSWx and SWOT PIXCVec (`.tif`)
+&nbsp;  
 
 ## `Raster_Diff.py`   
 Compares OPERA DSWx main river raster to SWOT PIXCVec raster to identify differences 
 in water detection.
 
-**Inputs:**
-- SWOT PIXCVec point cloud raster (`.shp`)
-- Raster of DSWx main river corresponding to date of SWOT PIXCVec observation (`.tif`)
+  * Inputs:  
+    * SWOT PIXCVec point cloud raster (`.shp`)
+    * Raster of DSWx main river corresponding to date of SWOT PIXCVec observation (`.tif`)
 
-**Outputs:**
-- Raster of difference between OPERA DSWx and SWOT PIXCVec (`.tif`)
+  * Outputs:  
+    * Raster of difference between OPERA DSWx and SWOT PIXCVec (`.tif`)
+
+&nbsp;  
+
+## `Raster_Diff.py`   
+Compares OPERA DSWx main river raster to SWOT PIXCVec raster to identify differences 
+in water detection.
+
+  * Inputs:  
+    * SWOT PIXCVec point cloud raster (`.shp`)
+    * Raster of DSWx main river corresponding to date of SWOT PIXCVec observation (`.tif`)
+
+  * Outputs:  
+    * Raster of difference between OPERA DSWx and SWOT PIXCVec (`.tif`)
+
+&nbsp;  
 
 ## `SWOT_Bitwise_Qual.py`   
 Decodes SWOT bitwise quality flags into more easily interpretable format for each 
 observation.
 
-**Inputs:**
-- Downloaded SWOT L2 HR River Single Pass observations with bitwise quality flags (`.csv`)
+  * Inputs:  
+    * Downloaded SWOT L2 HR River Single Pass observations with bitwise quality flags (`.csv`)
 
-**Outputs:**
-- File containing SWOT decoded bitwise quality flags (`.csv`)
+  * Outputs:  
+    * File containing SWOT decoded bitwise quality flags (`.csv`)
+
+&nbsp;  
 
 ## `Node_Comp_Bitwise.py`   
 Filters SWOT observations using bitwise quality flags and compares SWOT width observations to 
 coincident OPERA DSWx width observations.
 
-**Inputs:**
-- Downloaded SWOT L2 HR River Single Pass observations (`.csv`)
-- File of SWOT decoded bitwise quality flags (`.csv`)
-- File of OPERA DSWx observed widths (`.csv`)
+  * Inputs:  
+    * Downloaded SWOT L2 HR River Single Pass observations (`.csv`)
+    * File of SWOT decoded bitwise quality flags (`.csv`)
+    * File of OPERA DSWx observed widths (`.csv`)
 
-**Outputs:**
-- File containing paired SWOT-OPERA DSWx width observations (`.csv`)
+  * Outputs:  
+    * File containing paired SWOT-OPERA DSWx width observations (`.csv`)
+
+&nbsp;  
 
 ## `Node_Comp_Metrics.py`   
 Aggregates SWOT-OPERA DSWx width comparisons to SWORD nodes to evaluate spatial 
 agreement of width observations.
 
-**Inputs:**
-- File containing paired SWOT-OPERA DSWx width observations (`.csv`)
-- Folder of target SWORD nodes for each UTM zone (`.shp`)
+  * Inputs:  
+    * File containing paired SWOT-OPERA DSWx width observations (`.csv`)
+    * Folder of target SWORD nodes for each UTM zone (`.shp`)
 
-**Outputs:**
-- File containing SWOT-OPERA DSWx agreement stats at SWORD nodes (`.csv`)
-- File containing SWOT-OPERA DSWx agreement stats at SWORD nodes (`.shp`)
+  * Outputs:  
+    * File containing SWOT-OPERA DSWx agreement stats at SWORD nodes (`.csv`)
+    * File containing SWOT-OPERA DSWx agreement stats at SWORD nodes (`.shp`)
+
+&nbsp;  
 
 ## `Node_Comp_Plots.py`   
 Produces visualizations of the agreement between SWOT and OPERA DSWx width measurements.
 
-**Inputs:**
-- File containing paired SWOT-OPERA DSWx width observations (`.csv`)
+  * Inputs:  
+    * File containing paired SWOT-OPERA DSWx width observations (`.csv`)
 
-**Outputs:**
-- Various visualizations
+  * Outputs:  
+    * Various visualizations
+    
+&nbsp;  
 
 # Installation with Docker
 Installing DSWx-width is **by far the easiest with Docker**. This document was
