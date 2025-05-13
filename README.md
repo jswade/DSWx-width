@@ -24,20 +24,20 @@ The shell scripts in the `/tst/` folder sequentially call Python scripts by prov
 the required input files and pointing to the desired output locations.
 
 **`tst_case_dwnl_Wade_etal_2025.sh`**  
-The `tst_case_dwnl_Wade_etal_2025.sh` script is used to download testing data
+This script is used to download testing data
 from Zenodo for a limited region for automated testing on key functions in DSWx-width.
 
 **`tst_case_repr_Wade_etal_2025.sh`**  
-The `tst_case_repr_Wade_etal_2025.sh` script is used to perform individual computations and compare the results to expected outputs for automated testing of key functions in DSWx-width.
+This script is used to perform individual computations and compare the results to expected outputs for automated testing of key functions in DSWx-width.
 
 **`tst_pub_dwnl_all_Wade_etal_2025.sh`**  
-The `tst_pub_dwnl_all_Wade_etal_2025.sh` script is used to download all input data
+This script is used to download all input data
 to recreate the DSWx-width analysis in its entirety. If executed, this script will take 
 and extremely long time to run, as it is downloading a large volume of SWOT and OPERA DSWx 
 data.
 
 **`tst_pub_repr_all_Wade_etal_2025.sh`**  
-The `tst_pub_repr_all_Wade_etal_2025.sh` script is used to recreate the outputs of 
+This script is used to recreate the outputs of 
 the DSWx-width analysis in its entirety.
 
 # Python Scripts Documentation  
@@ -52,131 +52,131 @@ Selects SWORD nodes within target area, subdivided into separate shapefiles by t
 UTM zone.
 
 **Inputs:**
-- SWORD node file for given region (.nc)
-- Shapefiles delineating UTM zone boundaries (.shp)
-- Starting digits SWORD node ids for given region (7429 for Missouri River) (str)
-- Selected UTM zone (str)
+- SWORD node file for given region (`.nc`)
+- Shapefiles delineating UTM zone boundaries (`.shp`)
+- Starting digits SWORD node ids for given region (7429 for Missouri River) (`str`)
+- Selected UTM zone (`str`)
 
 **Outputs:**
-- Target SWORD node file for given UTM zone (.shp)
+- Target SWORD node file for given UTM zone (`.shp`)
 
 ## `CreateSWORDBuffers.py`   
 Generates extreme distance buffers surrounding SWORD nodes, delineating the maximum 
 distance for pixel-to-node assignment.
 
 **Inputs:**
-- Target SWORD node file for given UTM zone (.shp)
+- Target SWORD node file for given UTM zone (`.shp`)
 
 **Outputs:**
-- Buffers for SWORD nodes for a given UTM zone (.shp)
+- Buffers for SWORD nodes for a given UTM zone (`.shp`)
 
 ## `CreateThiessenPolygons.py`   
 Generates Thiessen polygons surrounding SWORD nodes, delineating the zone of influence 
 of each node for pixel-to-node assignment.
 
 **Inputs:**
-- Target SWORD node file for given UTM zone (.shp)
-- Buffers for SWORD nodes for a given UTM zone (.shp)
+- Target SWORD node file for given UTM zone (`.shp`)
+- Buffers for SWORD nodes for a given UTM zone (`.shp`)
 
 **Outputs:**
-- Thiessen polygons for SWORD nodes for a given UTM zone (.shp)
+- Thiessen polygons for SWORD nodes for a given UTM zone (`.shp`)
 
 ## `ConfReclass_OPERA.py`    
 Reclassifies OPERA DSWx CONF pixel values to simpler WTR format (open water/partial 
 water) for main river identification and width computation.
 
 **Inputs:**
-- Folder containing downloaded OPERA DSWx CONF layers (folder of .tif)
-- Reclassification strategy ("cons" or "agg") (str)
+- Folder containing downloaded OPERA DSWx CONF layers (folder of `.tif`)
+- Reclassification strategy ("cons" or "agg") (`str`)
 
 **Outputs:**
-- Output folder for reclassified DSWx layers (folder of .tif)
+- Output folder for reclassified DSWx layers (folder of `.tif`)
 
 ## `TempAgg_OPERA.py`   
 Temporally aggregates reclassified DSWx layers over specified time window to remove 
 influence of clouds.
 
 **Inputs:**
-- Folder containing reclassified DSWx layers (folder of .tif)
-- Starting date of study period (str)
-- Ending date of study period (str)
-- Length of temporal aggregation window (int)
+- Folder containing reclassified DSWx layers (folder of `.tif`)
+- Starting date of study period (`str`)
+- Ending date of study period (`str`)
+- Length of temporal aggregation window (`int`)
 
 **Outputs:**
-- Output folder for temporally aggregated DSWx layers (folder of .tif)
+- Output folder for temporally aggregated DSWx layers (folder of `.tif`)
 
 ## `UTM_Overlap_OPERA.py`    
 Identifies overlap of OPERA DSWx tiles with UTM zones for future tile merging.
 
 **Inputs:**
-- Folder containing temporally aggregated DSWx layers (folder of .tif)
-- Folder containing shapefiles of UTM zones (folder of .shp)
+- Folder containing temporally aggregated DSWx layers (folder of `.tif`)
+- Folder containing shapefiles of UTM zones (folder of `.shp`)
 
 **Outputs:**
-- File listing the OPERA DSWx tile ids for each target UTM zone (.csv)
+- File listing the OPERA DSWx tile ids for each target UTM zone (`.csv`)
 
 ## `SpatialAgg_OPERA.py`    
 Spatially merges temporally aggregated OPERA DSWx layers for each aggregation
 window and UTM zone.
 
 **Inputs:**
-- Folder containing temporally aggregated DSWx layers (folder of .tif)
-- File listing the OPERA DSWx tile ids for each target UTM zone (.csv)
-- Selected UTM zone (str)
+- Folder containing temporally aggregated DSWx layers (folder of `.tif`)
+- File listing the OPERA DSWx tile ids for each target UTM zone (`.csv`)
+- Selected UTM zone (`str`)
 
 **Outputs:**
 - Output folder for merged DSWx layers for each aggregation window and UTM Zone
-(folder of .tif)
+(folder of `.tif`)
 
 ## `Clump.py`    
 Clumps regions of DSWx pixels with the same value in preparation for main river identification.
 
 **Inputs:**
-- Folder containing merged DSWx layers (folder of .tif)
-- Shapefile of node Thiessen polygons for a given UTM zone (.shp)
-- Selected UTM zone (str)
+- Folder containing merged DSWx layers (folder of `.tif`)
+- Shapefile of node Thiessen polygons for a given UTM zone (`.shp`)
+- Selected UTM zone (`str`)
 
 **Outputs:**
 - Output folder for clumped DSWx rasters and shapefiles for each aggregation window and UTM Zone
-(folder of .shp and .tif)
+(folder of `.shp` and `.tif`)
 
 ## `CreatingMainRiver.py`   
 Identifies primary connected river channel from DSWx imagery, differentiated from disconnected 
 open water in the proximal floodplain.
 
 **Inputs:**
-- Folder containing clumped DSWx layers (folder of .tif)
-- Shapefile of node Thiessen polygons for a given UTM zone (.shp)
-- Shapefile of SWORD nodes for a given UTM zone (.shp)
-- Folder containing merged DSWx layers (folder of .tif)
-- Selected UTM zone (str)
+- Folder containing clumped DSWx layers (folder of `.tif`)
+- Shapefile of node Thiessen polygons for a given UTM zone (`.shp`)
+- Shapefile of SWORD nodes for a given UTM zone (`.shp`)
+- Folder containing merged DSWx layers (folder of `.tif`)
+- Selected UTM zone (`str`)
 
 **Outputs:**
 - Output folder for rasters identifying open water pixels belonging to main channel, 
 reclassified rasters of pixel values for main channel, and rasters differentiating connected
-and unconnected open and partial water pixels for each UTM zone (folder of .shp and .tif)
+and unconnected open and partial water pixels for each UTM zone (folder of `.shp` and `.tif`)
 
 ## `CreatingMainRiver.py`   
 Identifies primary connected river channel from DSWx imagery, differentiated from disconnected 
 open water in the proximal floodplain.
 
 **Inputs:**
-- Folder containing clumped DSWx layers (folder of .tif)
-- Shapefile of node Thiessen polygons for a given UTM zone (.shp)
-- Shapefile of SWORD nodes for a given UTM zone (.shp)
-- Folder containing merged DSWx layers (folder of .tif)
-- Selected UTM zone (str)
+- Folder containing clumped DSWx layers (folder of `.tif`)
+- Shapefile of node Thiessen polygons for a given UTM zone (`.shp`)
+- Shapefile of SWORD nodes for a given UTM zone (`.shp`)
+- Folder containing merged DSWx layers (folder of `.tif`)
+- Selected UTM zone (`str`)
 
 **Outputs:**
 - Output folder for rasters identifying open water pixels belonging to main channel, 
 reclassified rasters of pixel values for main channel, and rasters differentiating connected
-and unconnected open and partial water pixels for each UTM zone (folder of .shp and .tif)
+and unconnected open and partial water pixels for each UTM zone (folder of `.shp` and `.tif`)
 
 
 
 
 
-## Installation with Docker
+# Installation with Docker
 Installing DSWx-width is **by far the easiest with Docker**. This document was
 written and tested using
 [Docker Community Edition](https://www.docker.com/community-edition#/download)
@@ -202,7 +202,7 @@ DSWx-width is ready to go! To run it, just use:
 $ docker run --rm -it jswade1/DSWx-width
 ```
 
-## Installation on Debian
+# Installation on Debian
 This document was written and tested on a machine with a **clean** image of 
 [Debian 11.7.0 ARM64](https://cdimage.debian.org/cdimage/archive/11.7.0/arm64/iso-cd/debian-11.7.0-arm64-netinst.iso)
 installed, *i.e.* **no upgrade** was performed. 

@@ -104,7 +104,15 @@ echo "- Comparing SWORD shapefile (.shp)"
     ../output_testing/sword/nodes/target_nodes_utm${utm}.shp                   \
     ../output_test/sword/nodes/target_nodes_utm${utm}.shp                      \
     > $cmp_file
-x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+#x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+x=$?
+if [ $x -gt 0 ]; then
+    echo "Failed comparison: $cmp_file" >&2
+    echo "Output:"
+    cat $cmp_file
+    exit $x
+fi
 
 rm -f $cmp_file
 rm -f $run_file
