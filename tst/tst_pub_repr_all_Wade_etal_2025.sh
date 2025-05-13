@@ -502,7 +502,7 @@ run_file=tmp_run_$unt.txt
 
 echo "- Rasterize PIXCVec point cloud (Wide River)"
 
-../src/swot_pixcvec_raster.py                                                  \
+../src/SWOT_Pixcvec_Raster.py                                                  \
     ../output_test/opera/swot_rast_diff/SWOT_L2_HR_PIXCVec_020_037_230R_20240821T232036_20240821T232047_PIC0_01.shp\
     ../output_test/opera/conwater/main_river/opera_14N_2024-08-10_2024-08-24_main_river.tif\
     ../output_test/opera/swot_rast_diff/SWOT_L2_HR_PIXCVec_020_037_230R_20240821T232036_20240821T232047_PIC0_01.tif\

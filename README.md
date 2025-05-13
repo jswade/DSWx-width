@@ -228,6 +228,27 @@ Transforms SWOT PIXCVec point cloud observations from `.nc` to `.shp`.
 **Outputs:**
 - Output folder for files containing river widths corresponding to SWORD nodes (`.csv`)
 
+## `SWOT_Pixcvec_Raster.py`   
+Converts SWOT PIXCVec point cloud shapefile to raster that matches the spatial resolution
+of OPERA DSWx layers.
+
+**Inputs:**
+- SWOT PIXCVec point cloud shapefile (`.shp`)
+- Raster of DSWx main river corresponding to date of SWOT PIXCVec observation (`.tif`)
+
+**Outputs:**
+- Rasterized SWOT PIXCVec point cloud (`.tif`)
+
+## `Raster_Diff.py`   
+Compares OPERA DSWx main river raster to SWOT PIXCVec raster to identify differences 
+in water detection.
+
+**Inputs:**
+- SWOT PIXCVec point cloud raster (`.shp`)
+- Raster of DSWx main river corresponding to date of SWOT PIXCVec observation (`.tif`)
+
+**Outputs:**
+- Raster of difference between OPERA DSWx and SWOT PIXCVec (`.tif`)
 
 # Installation with Docker
 Installing DSWx-width is **by far the easiest with Docker**. This document was

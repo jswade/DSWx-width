@@ -43,19 +43,7 @@ def compare_files(file_org, file_tst):
         return filecmp.cmp(file_org, file_tst, shallow=False)
 
 
-# Compare original and testing shapefiles
-# def compare_shapefiles(file_org, file_tst):
-#     import geopandas as gpd
-#     try:
-#         gdf1 = gpd.read_file(file_org)
-#         gdf2 = gpd.read_file(file_tst)
-#         return gdf1.equals(gdf2)
-#     except Exception as e:
-#         print("ERROR comparing shapefiles:", e)
-#         print("Original File Length: " + len(gdf1))
-#         print("Testing File Length: " + len(gdf2))
-#         return False
-
+# Compare original and testing shapefiles with tolerance
 def compare_shapefiles(file_org, file_tst):
     import geopandas as gpd
     import pandas as pd
@@ -64,12 +52,12 @@ def compare_shapefiles(file_org, file_tst):
         gdf1 = gpd.read_file(file_org)
         gdf2 = gpd.read_file(file_tst)
 
-        # Check length
+        # Compare lengths
         if len(gdf1) != len(gdf2):
             print(f"Mismatch in number of features: {len(gdf1)} vs {len(gdf2)}")
             return False
 
-        # Check column names
+        # Compare column names
         if set(gdf1.columns) != set(gdf2.columns):
             print("Mismatch in column names:")
             print("Original:", sorted(gdf1.columns))
@@ -79,7 +67,7 @@ def compare_shapefiles(file_org, file_tst):
         # Reorder columns to match
         gdf2 = gdf2[gdf1.columns]
 
-        # Sort both by index to stabilize row order (optional: sort by ID field if exists)
+        # Sort by index
         gdf1 = gdf1.sort_index().reset_index(drop=True)
         gdf2 = gdf2.sort_index().reset_index(drop=True)
 
@@ -87,23 +75,26 @@ def compare_shapefiles(file_org, file_tst):
         g1_geom = gdf1.geometry.reset_index(drop=True)
         g2_geom = gdf2.geometry.reset_index(drop=True)
 
+        # Identify geometry mismatches
         mismatches = []
         for i in range(len(g1_geom)):
-            if not g1_geom.iloc[i].equals_exact(g2_geom.iloc[i], tolerance=1e-6):
+            if not g1_geom.iloc[i].equals_exact(g2_geom.iloc[i],
+                                                tolerance=1e-6):
                 mismatches.append(i)
-
         if mismatches:
-            print(f"Geometry mismatch in {len(mismatches)} rows: {mismatches[:10]}... [truncated]")
+            print(f"Geometry mismatch in {len(mismatches)} "
+                  "rows: {mismatches[:10]}... [truncated]")
             return False
 
-        # Check attribute equality (excluding geometry)
+        # Check attribute equality
         df1 = gdf1.drop(columns="geometry")
         df2 = gdf2.drop(columns="geometry")
         if not df1.equals(df2):
             diff_mask = ~(df1 == df2).all(axis=1)
             print("Attribute mismatch in rows:", list(df1.index[diff_mask]))
             print("Differences (first few rows):")
-            print(pd.concat([df1[diff_mask], df2[diff_mask]], axis=1, keys=['Original', 'Test']).head())
+            print(pd.concat([df1[diff_mask], df2[diff_mask]], axis=1,
+                            keys=['Original', 'Test']).head())
             return False
 
         return True
