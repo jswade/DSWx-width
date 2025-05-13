@@ -50,16 +50,18 @@ from shapely.geometry import shape
 # wbt.work_dir = work_dir
 # wbt.set_verbose_mode(True)
 
-work_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # Adjust as needed
-sys.path.append(work_dir)
+# Append parent of WBT directory to sys.path
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.abspath(os.path.join(script_dir, '..'))
+sys.path.append(project_root)
 
-# Import whitebox packages
+# Now import
 from WBT.whitebox_tools import WhiteboxTools
 from whitebox_workflows import WbEnvironment
 
 wbt = WhiteboxTools()
 wbe = WbEnvironment()
-wbt.work_dir = work_dir
+wbt.work_dir = project_root
 wbt.set_verbose_mode(True)
 
 # ******************************************************************************
