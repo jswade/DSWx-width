@@ -127,16 +127,64 @@ Identify overlap of OPERA DSWx tiles with UTM zones for future tile merging.
 
 **`SpatialAgg_OPERA.py`**  
 **Purpose:**  
-Identify overlap of OPERA DSWx tiles with UTM zones for future tile merging.
+Spatially merge temporally aggregated OPERA DSWx layers for each aggregation
+window and UTM zone.
 
 **Inputs:**
 - Folder containing temporally aggregated DSWx layers (folder of .tif)
-- Folder containing shapefiles of UTM zones (folder of .shp)
+- File listing the OPERA DSWx tile ids for each target UTM zone (.csv)
+- Selected UTM zone (str)
 
 **Outputs:**
-- File listing the OPERA DSWx tile ids for each target UTM zone (.csv)
+- Output folder for merged DSWx layers for each aggregation window and UTM Zone
+(folder of .tif)
 
+**`Clump.py`**  
+**Purpose:**  
+Clump regions of DSWx pixels with the same value in preparation for main river identification.
 
+**Inputs:**
+- Folder containing merged DSWx layers (folder of .tif)
+- Shapefile of node Thiessen polygons for a given UTM zone (.shp)
+- Selected UTM zone (str)
+
+**Outputs:**
+- Output folder for clumped DSWx rasters and shapefiles for each aggregation window and UTM Zone
+(folder of .shp and .tif)
+
+**`CreatingMainRiver.py`**  
+**Purpose:**  
+Identify primary connected river channel from DSWx imagery, differentiated from disconnected 
+open water in the proximal floodplain.
+
+**Inputs:**
+- Folder containing clumped DSWx layers (folder of .tif)
+- Shapefile of node Thiessen polygons for a given UTM zone (.shp)
+- Shapefile of SWORD nodes for a given UTM zone (.shp)
+- Folder containing merged DSWx layers (folder of .tif)
+- Selected UTM zone (str)
+
+**Outputs:**
+- Output folder for rasters identifying open water pixels belonging to main channel, 
+reclassified rasters of pixel values for main channel, and rasters differentiating connected
+and unconnected open and partial water pixels for each UTM zone (folder of .shp and .tif)
+
+**`CreatingMainRiver.py`**  
+**Purpose:**  
+Identify primary connected river channel from DSWx imagery, differentiated from disconnected 
+open water in the proximal floodplain.
+
+**Inputs:**
+- Folder containing clumped DSWx layers (folder of .tif)
+- Shapefile of node Thiessen polygons for a given UTM zone (.shp)
+- Shapefile of SWORD nodes for a given UTM zone (.shp)
+- Folder containing merged DSWx layers (folder of .tif)
+- Selected UTM zone (str)
+
+**Outputs:**
+- Output folder for rasters identifying open water pixels belonging to main channel, 
+reclassified rasters of pixel values for main channel, and rasters differentiating connected
+and unconnected open and partial water pixels for each UTM zone (folder of .shp and .tif)
 
 
 ## Installation with Docker

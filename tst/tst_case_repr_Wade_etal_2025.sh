@@ -97,29 +97,17 @@ echo "- Selecting SWORD nodes in target area"
     ${utm[i]}                                                                  \
     ../output_test/sword/nodes/target_nodes_utm${utm}.shp                      \
     > $run_file
-#x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
-x=$?
-if [ $x -gt 0 ]; then
-    echo "❌ Failed run: $run_file" >&2
-    cat $run_file >&2
-    exit $x
-fi
+x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
+
+diff ../output_testing/sword/nodes/target_nodes_utm${utm}.dbf \
+     ../output_test/sword/nodes/target_nodes_utm${utm}.dbf
 
 echo "- Comparing SWORD shapefile (.shp)"
 ../src/tst_cmp.py                                                              \
     ../output_testing/sword/nodes/target_nodes_utm${utm}.shp                   \
     ../output_test/sword/nodes/target_nodes_utm${utm}.shp                      \
     > $cmp_file
-#x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
-x=$?
-if [ $x -gt 0 ]; then
-    echo "Failed comparison: $cmp_file" >&2
-    echo "--- Comparison output ---"
-    cat $cmp_file >&2
-    # Save debug info for GitHub Actions artifact upload (optional)
-    cp $cmp_file "failed_comparison_${unt}.txt"
-    exit $x
-fi
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
 
 rm -f $cmp_file
 rm -f $run_file
