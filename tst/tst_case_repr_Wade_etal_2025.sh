@@ -98,12 +98,12 @@ echo "- Selecting SWORD nodes in target area"
     ../output_test/sword/nodes/target_nodes_utm${utm}.shp                      \
     > $run_file
 #x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
- x=$?
-    if [ $x -gt 0 ]; then
-        echo "❌ Failed run: $run_file" >&2
-        cat $run_file >&2
-        exit $x
-    fi
+x=$?
+if [ $x -gt 0 ]; then
+    echo "❌ Failed run: $run_file" >&2
+    cat $run_file >&2
+    exit $x
+fi
 
 echo "- Comparing SWORD shapefile (.shp)"
 ../src/tst_cmp.py                                                              \
@@ -113,7 +113,7 @@ echo "- Comparing SWORD shapefile (.shp)"
 #x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
 x=$?
 if [ $x -gt 0 ]; then
-    echo "❌ Failed comparison: $cmp_file" >&2
+    echo "Failed comparison: $cmp_file" >&2
     echo "--- Comparison output ---"
     cat $cmp_file >&2
     # Save debug info for GitHub Actions artifact upload (optional)

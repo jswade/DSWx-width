@@ -23,24 +23,24 @@ The DSWx-width dataset is publicly available at https://zenodo.org/records/15391
 The shell scripts in the `/tst/` folder sequentially call Python scripts by providing
 the required input files and pointing to the desired output locations.
 
-**`tst_case_dwnl_Wade_etal_2025.sh`**
-**Purpose**
+**`tst_case_dwnl_Wade_etal_2025.sh`**  
+**Purpose:**  
 The `tst_case_dwnl_Wade_etal_2025.sh` script is used to download testing data
 from Zenodo for a limited region for automated testing on key functions in DSWx-width.
 
-**`tst_case_repr_Wade_etal_2025.sh`**
-**Purpose**
+**`tst_case_repr_Wade_etal_2025.sh`**  
+**Purpose:**  
 The `tst_case_repr_Wade_etal_2025.sh` script is used to perform individual computations and compare the results to expected outputs for automated testing of key functions in DSWx-width.
 
-**`tst_pub_dwnl_all_Wade_etal_2025.sh`**
-**Purpose**
+**`tst_pub_dwnl_all_Wade_etal_2025.sh`**  
+**Purpose:**  
 The `tst_pub_dwnl_all_Wade_etal_2025.sh` script is used to download all input data
 to recreate the DSWx-width analysis in its entirety. If executed, this script will take 
 and extremely long time to run, as it is downloading a large volume of SWOT and OPERA DSWx 
 data.
 
-**`tst_pub_repr_all_Wade_etal_2025.sh`**
-**Purpose**
+**`tst_pub_repr_all_Wade_etal_2025.sh`**  
+**Purpose:**  
 The `tst_pub_repr_all_Wade_etal_2025.sh` script is used to recreate the outputs of 
 the DSWx-width analysis in its entirety.
 
@@ -51,68 +51,92 @@ run in loops by the `/tst/` scripts for each unique UTM zone to align with the
 projections of SWORD observations. Here, the scripts are listed in order of 
 their use in the analysis.
 
-**`SelectSWORDFeatures.py`**
-**Purpose**
+**`SelectSWORDFeatures.py`**  
+**Purpose:**  
 Select SWORD nodes within target area, subdivided into separate shapefiles by their 
 UTM zone.
 
-**Inputs**
+**Inputs:**
 - SWORD node file for given region (.nc)
 - Shapefiles delineating UTM zone boundaries (.shp)
 - Starting digits SWORD node ids for given region (7429 for Missouri River) (str)
 - Selected UTM zone (str)
 
-**Outputs**
+**Outputs:**
 - Target SWORD node file for given UTM zone (.shp)
 
-**`CreateSWORDBuffers.py`**
-**Purpose**
+**`CreateSWORDBuffers.py`**  
+**Purpose:**  
 Generate extreme distance buffers surrounding SWORD nodes, delineating the maximum 
 distance for pixel-to-node assignment.
 
-**Inputs**
+**Inputs:**
 - Target SWORD node file for given UTM zone (.shp)
 
-**Outputs**
+**Outputs:**
 - Buffers for SWORD nodes for a given UTM zone (.shp)
 
-**`CreateThiessenPolygons.py`**
-**Purpose**
+**`CreateThiessenPolygons.py`**  
+**Purpose:**  
 Generate Thiessen polygons surrounding SWORD nodes, delineating the zone of influence 
 of each node for pixel-to-node assignment.
 
-**Inputs**
+**Inputs:**
 - Target SWORD node file for given UTM zone (.shp)
 - Buffers for SWORD nodes for a given UTM zone (.shp)
 
-**Outputs**
+**Outputs:**
 - Thiessen polygons for SWORD nodes for a given UTM zone (.shp)
 
-**`ConfReclass_OPERA.py`**
-**Purpose**
+**`ConfReclass_OPERA.py`**  
+**Purpose:**  
 Reclassify OPERA DSWx CONF pixel values to simpler WTR format (open water/partial 
 water) for main river identification and width computation.
 
-**Inputs**
+**Inputs:**
 - Folder containing downloaded OPERA DSWx CONF layers (folder of .tif)
 - Reclassification strategy ("cons" or "agg") (str)
 
-**Outputs**
+**Outputs:**
 - Output folder for reclassified DSWx layers (folder of .tif)
 
-**`TempAgg_OPERA.py`**
-**Purpose**
+**`TempAgg_OPERA.py`**  
+**Purpose:**  
 Temporally aggregate reclassified DSWx layers over specified time window to remove 
 influence of clouds.
 
-**Inputs**
+**Inputs:**
 - Folder containing reclassified DSWx layers (folder of .tif)
 - Starting date of study period (str)
 - Ending date of study period (str)
 - Length of temporal aggregation window (int)
 
-**Outputs**
+**Outputs:**
 - Output folder for temporally aggregated DSWx layers (folder of .tif)
+
+**`UTM_Overlap_OPERA.py`**  
+**Purpose:**  
+Identify overlap of OPERA DSWx tiles with UTM zones for future tile merging.
+
+**Inputs:**
+- Folder containing temporally aggregated DSWx layers (folder of .tif)
+- Folder containing shapefiles of UTM zones (folder of .shp)
+
+**Outputs:**
+- File listing the OPERA DSWx tile ids for each target UTM zone (.csv)
+
+**`SpatialAgg_OPERA.py`**  
+**Purpose:**  
+Identify overlap of OPERA DSWx tiles with UTM zones for future tile merging.
+
+**Inputs:**
+- Folder containing temporally aggregated DSWx layers (folder of .tif)
+- Folder containing shapefiles of UTM zones (folder of .shp)
+
+**Outputs:**
+- File listing the OPERA DSWx tile ids for each target UTM zone (.csv)
+
+
 
 
 ## Installation with Docker
