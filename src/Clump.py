@@ -38,19 +38,21 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # os.chdir(work_dir)
 # sys.path.append(work_dir)
 
-# Set working directory to project root
-script_dir = os.path.dirname(os.path.abspath(__file__))
-work_dir = os.path.abspath(os.path.join(script_dir, '..'))
-os.chdir(work_dir)
-sys.path.append(work_dir)
+# # Set working directory to project root
+# script_dir = os.path.dirname(os.path.abspath(__file__))
+# work_dir = os.path.abspath(os.path.join(script_dir, '..'))
+# os.chdir(work_dir)
+# sys.path.append(work_dir)
 
-# Import whitebox packages
-from WBT.whitebox_tools import WhiteboxTools
+# # Import whitebox packages
+# from WBT.whitebox_tools import WhiteboxTools
+# wbt = WhiteboxTools()
+# wbe = WbEnvironment()
+# wbt.work_dir = work_dir
+# wbt.set_verbose_mode(True)
+
+from whitebox.whitebox_tools import WhiteboxTools
 wbt = WhiteboxTools()
-wbe = WbEnvironment()
-wbt.work_dir = work_dir
-wbt.set_verbose_mode(True)
-
 
 # ******************************************************************************
 # Declaration of variables (given as command line arguments)
