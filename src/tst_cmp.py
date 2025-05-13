@@ -16,6 +16,7 @@
 # ******************************************************************************
 import sys
 import filecmp
+import pathlib
 
 
 # ******************************************************************************
@@ -23,6 +24,64 @@ import filecmp
 # ******************************************************************************
 # 1 - file_org
 # 2 - file_tst
+
+
+# ******************************************************************************
+# Define comparison functions
+# ******************************************************************************
+# Identify type of file for comparison
+def compare_files(file_org, file_tst):
+    suffix = pathlib.Path(file_org).suffix.lower()
+
+    if suffix == '.shp':
+        return compare_shapefiles(file_org, file_tst)
+    elif suffix == '.csv':
+        return compare_csvs(file_org, file_tst)
+    elif suffix == '.tif':
+        return compare_tifs(file_org, file_tst)
+    else:
+        return filecmp.cmp(file_org, file_tst, shallow=False)
+
+
+# Compare original and testing shapefiles
+def compare_shapefiles(file_org, file_tst):
+    import geopandas as gpd
+    try:
+        gdf1 = gpd.read_file(file_org)
+        gdf2 = gpd.read_file(file_tst)
+        return gdf1.equals(gdf2)
+    except Exception as e:
+        print("ERROR comparing shapefiles:", e)
+        return False
+
+
+# Compare original and testing csv files
+def compare_csvs(file_org, file_tst):
+    import pandas as pd
+    try:
+        df1 = pd.read_csv(file_org).sort_index(axis=1)
+        df2 = pd.read_csv(file_tst).sort_index(axis=1)
+        return df1.equals(df2)
+    except Exception as e:
+        print("ERROR comparing CSVs:", e)
+        return False
+
+
+# Compare original and testing tif files
+def compare_tifs(file_org, file_tst):
+    import rasterio
+    import numpy as np
+    try:
+        with rasterio.open(file_org) as src1, rasterio.open(file_tst) as src2:
+            if src1.count != src2.count or src1.shape != src2.shape:
+                return False
+            for i in range(1, src1.count + 1):
+                if not np.allclose(src1.read(i), src2.read(i), equal_nan=True):
+                    return False
+            return True
+    except Exception as e:
+        print("ERROR comparing TIFFs:", e)
+        return False
 
 
 # ******************************************************************************
@@ -58,12 +117,8 @@ except IOError:
 # ******************************************************************************
 # Compare original and test files
 # ******************************************************************************
-
-# Clear cache
-filecmp.clear_cache()
-
-# If files are not identical, raise error
-if not (filecmp.cmp(file_org, file_tst, shallow=False)):
+# Perform comparison
+if not compare_files(file_org, file_tst):
     print('ERROR - Comparison failed.')
     raise SystemExit(99)
 else:

@@ -19,7 +19,7 @@ DSWx-width aims to:
 
 The DSWx-width dataset is publicly available at https://zenodo.org/records/15391839.
 
-## Shell Script Documentation
+# Shell Script Documentation
 The shell scripts in the `/tst/` folder sequentially call Python scripts by providing
 the required input files and pointing to the desired output locations.
 
@@ -40,14 +40,14 @@ data.
 The `tst_pub_repr_all_Wade_etal_2025.sh` script is used to recreate the outputs of 
 the DSWx-width analysis in its entirety.
 
-## Python Scripts Documentation
+# Python Scripts Documentation  
 The Python scripts in the `/src/` folder represent individual computational steps used to 
 obtain river width measurements from OPERA DSWx imagery. Many of the Python scripts are 
 run in loops by the `/tst/` scripts for each unique UTM zone to align with the 
 projections of SWORD observations. Here, the scripts are listed in order of 
 their use in the analysis.
 
-**`SelectSWORDFeatures.py`**  
+## `SelectSWORDFeatures.py`  
 Selects SWORD nodes within target area, subdivided into separate shapefiles by their 
 UTM zone.
 
@@ -60,7 +60,7 @@ UTM zone.
 **Outputs:**
 - Target SWORD node file for given UTM zone (.shp)
 
-**`CreateSWORDBuffers.py`**  
+## `CreateSWORDBuffers.py`   
 Generates extreme distance buffers surrounding SWORD nodes, delineating the maximum 
 distance for pixel-to-node assignment.
 
@@ -70,7 +70,7 @@ distance for pixel-to-node assignment.
 **Outputs:**
 - Buffers for SWORD nodes for a given UTM zone (.shp)
 
-**`CreateThiessenPolygons.py`**  
+## `CreateThiessenPolygons.py`   
 Generates Thiessen polygons surrounding SWORD nodes, delineating the zone of influence 
 of each node for pixel-to-node assignment.
 
@@ -81,7 +81,7 @@ of each node for pixel-to-node assignment.
 **Outputs:**
 - Thiessen polygons for SWORD nodes for a given UTM zone (.shp)
 
-**`ConfReclass_OPERA.py`**  
+## `ConfReclass_OPERA.py`    
 Reclassifies OPERA DSWx CONF pixel values to simpler WTR format (open water/partial 
 water) for main river identification and width computation.
 
@@ -92,7 +92,7 @@ water) for main river identification and width computation.
 **Outputs:**
 - Output folder for reclassified DSWx layers (folder of .tif)
 
-**`TempAgg_OPERA.py`**  
+## `TempAgg_OPERA.py`   
 Temporally aggregates reclassified DSWx layers over specified time window to remove 
 influence of clouds.
 
@@ -105,7 +105,7 @@ influence of clouds.
 **Outputs:**
 - Output folder for temporally aggregated DSWx layers (folder of .tif)
 
-**`UTM_Overlap_OPERA.py`**  
+## `UTM_Overlap_OPERA.py`    
 Identifies overlap of OPERA DSWx tiles with UTM zones for future tile merging.
 
 **Inputs:**
@@ -115,7 +115,7 @@ Identifies overlap of OPERA DSWx tiles with UTM zones for future tile merging.
 **Outputs:**
 - File listing the OPERA DSWx tile ids for each target UTM zone (.csv)
 
-**`SpatialAgg_OPERA.py`**  
+## `SpatialAgg_OPERA.py`    
 Spatially merges temporally aggregated OPERA DSWx layers for each aggregation
 window and UTM zone.
 
@@ -128,7 +128,7 @@ window and UTM zone.
 - Output folder for merged DSWx layers for each aggregation window and UTM Zone
 (folder of .tif)
 
-**`Clump.py`**  
+## `Clump.py`    
 Clumps regions of DSWx pixels with the same value in preparation for main river identification.
 
 **Inputs:**
@@ -140,7 +140,7 @@ Clumps regions of DSWx pixels with the same value in preparation for main river 
 - Output folder for clumped DSWx rasters and shapefiles for each aggregation window and UTM Zone
 (folder of .shp and .tif)
 
-**`CreatingMainRiver.py`**  
+## `CreatingMainRiver.py`   
 Identifies primary connected river channel from DSWx imagery, differentiated from disconnected 
 open water in the proximal floodplain.
 
@@ -156,7 +156,7 @@ open water in the proximal floodplain.
 reclassified rasters of pixel values for main channel, and rasters differentiating connected
 and unconnected open and partial water pixels for each UTM zone (folder of .shp and .tif)
 
-**`CreatingMainRiver.py`**  
+## `CreatingMainRiver.py`   
 Identifies primary connected river channel from DSWx imagery, differentiated from disconnected 
 open water in the proximal floodplain.
 
