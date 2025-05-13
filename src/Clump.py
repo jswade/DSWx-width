@@ -207,8 +207,14 @@ for i in range(len(val_mon_yrs)):
     fp_shp = clump_out + 'clumpedras_poly/opera_' + utm_str + '_' +            \
         val_mon_yrs[i] + '_clumpedRas_poly.shp'
 
-    # Use the clump tool to create regions
-    wbt.clump(fp_reclass, fp_clump, diag=True, zero_back=True)
+    # # Use the clump tool to create regions
+    # wbt.clump(fp_reclass, fp_clump, diag=True, zero_back=True)
+    
+    ret_code = wbt.clump(fp_reclass, fp_clump, diag=True, zero_back=True)
+
+    if ret_code != 0 or not os.path.exists(fp_clump):
+        print(f"Clump failed or output missing for: {fp_reclass}")
+        continue
 
     # Clip clumped raster to thiessen polygons
     with rasterio.open(fp_clump) as src:

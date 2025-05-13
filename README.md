@@ -51,13 +51,13 @@ their use in the analysis.
 Downloads OPERA DSWx CONF layers within target region between specified dates 
 using NASA EarthAccess. 
 
-**Inputs:**
+###Inputs:  
 - Shapefile of target region (`.shp`)
 - Folder of SWORD node shapefiles for each UTM zone (`.shp`)
 - Starting date of study period (`str`)
 - Ending date of study period (`str`)
 
-**Outputs:**
+###Outputs:  
 - Output folder for downloaded OPERA DSWx CONF layers (`.tif`)
 - File containing OPERA DSWx tile boundaries (`.kml`)
   
