@@ -50,26 +50,42 @@ from shapely.geometry import shape
 # wbt.work_dir = work_dir
 # wbt.set_verbose_mode(True)
 
+import importlib.util
 
-# Dynamically set the root of the project
-script_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = os.path.abspath(os.path.join(script_dir, '..'))
+# Define the path to the whitebox_tools.py file inside the WBT/ directory
+wbt_path = os.path.join(os.path.dirname(__file__), '../WBT/whitebox_tools.py')
 
-# Add project root to sys.path
-if project_root not in sys.path:
-    sys.path.insert(0, project_root)
+# Check if the path to whitebox_tools.py exists
+if not os.path.isfile(wbt_path):
+    raise FileNotFoundError(f"Could not find 'whitebox_tools.py' at {wbt_path}")
 
-# Import WBT and workflows
-from WBT.whitebox_tools import WhiteboxTools
-from whitebox_workflows import WbEnvironment
+# Dynamically import the whitebox_tools module
+spec = importlib.util.spec_from_file_location("whitebox_tools", wbt_path)
+whitebox_tools = importlib.util.module_from_spec(spec)
 
-# Initialize WBT
-wbt = WhiteboxTools()
+# Add the module to sys.modules so it can be accessed globally
+sys.modules["whitebox_tools"] = whitebox_tools
+
+# Execute the module to load its contents
+spec.loader.exec_module(whitebox_tools)
+
+# Initialize WhiteboxTools object
+wbt = whitebox_tools.WhiteboxTools()
+
+# Define and set the working directory
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 wbt.work_dir = project_root
+
+# Enable verbose mode for debugging
 wbt.set_verbose_mode(True)
 
-# Initialize environment (if needed)
+# Initialize the WbEnvironment if needed
+from whitebox_workflows import WbEnvironment
 wbe = WbEnvironment()
+
+print(f"WhiteboxTools initialized with work directory: {wbt.work_dir}")
+print("sys.path:", sys.path)
+
 
 # ******************************************************************************
 # Declaration of variables (given as command line arguments)
