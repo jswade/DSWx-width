@@ -85,7 +85,7 @@ def compare_shapefiles(file_org, file_tst):
 
         # Check geometry equality
         if not gdf1.geometry.equals(gdf2.geometry):
-            diffs = ~gdf1.geometry.equals(gdf2.geometry)
+            diffs = gdf1.geometry != gdf2.geometry
             print("Geometry mismatch in rows:", list(gdf1.index[diffs]))
             return False
 

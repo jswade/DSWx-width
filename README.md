@@ -61,6 +61,18 @@ using NASA EarthAccess.
 - Output folder for downloaded OPERA DSWx CONF layers (folder of `.tif`)
 - File containing OPERA DSWx tile boundaries (`.kml`)
 
+## `Download_SWOT_Node_Data_Pass.py`  
+Downloads SWOT L2 HR River Single Pass observations for target nodes between
+specified dates using NASA PODAAC's Hydrocron tool. 
+
+**Inputs:**
+- Folder of SWORD node shapefiles for each UTM zone (`.shp`)
+- Starting date of study period (`str`)
+- Ending date of study period (`str`)
+- File containing SWOT orbital information (`.nc`)
+
+**Outputs:**
+- Output folder for downloaded SWOT observations (folder of `.csv`)
 
 ## `SelectSWORDFeatures.py`  
 Selects SWORD nodes within target area, subdivided into separate shapefiles by their 
