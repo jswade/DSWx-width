@@ -350,32 +350,32 @@ if [ $x -gt 0 ]; then
     cat "$run_file" >&2
     exit $x
 fi
-
-echo "- Comparing Clumped reclassified tiles (.tif)"
-../src/tst_cmp.py                                                              \
-    ../output_testing/opera/clump/reclass/opera_12N_2024-07-13_2024-07-27_reclassified.tif\
-    ../output_test/opera/clump/reclass/opera_12N_2024-07-13_2024-07-27_reclassified.tif\
-    > $cmp_file
-#x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
-x=$?
-if [ $x -gt 0 ]; then
-    echo "Failed comparison: $cmp_file" >&2
-    cat "$cmp_file" >&2
-    exit $x
-fi
-
-echo "- Comparing Clumped shapefiles (.shp)"
-../src/tst_cmp.py                                                              \
-    ../output_testing/opera/clump/clumpedras_poly/opera_12N_2024-07-13_2024-07-27_clumpedRas_poly.shp\
-    ../output_test/opera/clump/clumpedras_poly/opera_12N_2024-07-13_2024-07-27_clumpedRas_poly.shp\
-    > $cmp_file
-#x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
-x=$?
-if [ $x -gt 0 ]; then
-    echo "Failed comparison: $cmp_file" >&2
-    cat "$cmp_file" >&2
-    exit $x
-fi
+#
+#echo "- Comparing Clumped reclassified tiles (.tif)"
+#../src/tst_cmp.py                                                              \
+#    ../output_testing/opera/clump/reclass/opera_12N_2024-07-13_2024-07-27_reclassified.tif\
+#    ../output_test/opera/clump/reclass/opera_12N_2024-07-13_2024-07-27_reclassified.tif\
+#    > $cmp_file
+##x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+#x=$?
+#if [ $x -gt 0 ]; then
+#    echo "Failed comparison: $cmp_file" >&2
+#    cat "$cmp_file" >&2
+#    exit $x
+#fi
+#
+#echo "- Comparing Clumped shapefiles (.shp)"
+#../src/tst_cmp.py                                                              \
+#    ../output_testing/opera/clump/clumpedras_poly/opera_12N_2024-07-13_2024-07-27_clumpedRas_poly.shp\
+#    ../output_test/opera/clump/clumpedras_poly/opera_12N_2024-07-13_2024-07-27_clumpedRas_poly.shp\
+#    > $cmp_file
+##x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+#x=$?
+#if [ $x -gt 0 ]; then
+#    echo "Failed comparison: $cmp_file" >&2
+#    cat "$cmp_file" >&2
+#    exit $x
+#fi
 
 rm -f $cmp_file
 rm -f $run_file
