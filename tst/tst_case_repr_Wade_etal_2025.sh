@@ -342,7 +342,13 @@ echo "- Clumping similar pixels"
     ${utm}                                                                     \
     ../output_test/opera/clump/                                                \
     > $run_file
-x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
+#x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
+x=$?
+if [ $x -gt 0 ]; then
+    echo "Failed run: $run_file" >&2
+    cat "$run_file" >&2
+    exit $x
+fi
 
 echo "- Comparing Clumped reclassified tiles (.tif)"
 ../src/tst_cmp.py                                                              \

@@ -262,6 +262,30 @@ in water detection.
 **Outputs:**
 - Raster of difference between OPERA DSWx and SWOT PIXCVec (`.tif`)
 
+## `SWOT_Bitwise_Qual.py`   
+Decodes SWOT bitwise quality flags into more easily interpretable format for each 
+observation.
+
+**Inputs:**
+- Downloaded SWOT L2 HR River Single Pass observations with bitwise quality flags (`.csv`)
+
+**Outputs:**
+- File containing SWOT decoded bitwise quality flags (`.csv`)
+
+## `Node_Comp_Bitwise.py`   
+Filters SWOT observations using bitwise quality flags and compares SWOT width observations to 
+coincident OPERA DSWx width observations.
+
+**Inputs:**
+- Downloaded SWOT L2 HR River Single Pass observations (`.csv`)
+- File of SWOT decoded bitwise quality flags (`.csv`)
+- File of OPERA DSWx observed widths (`.csv`)
+
+**Outputs:**
+- File containing paired SWOT-OPERA DSWx width observations (`.csv`)
+
+
+
 # Installation with Docker
 Installing DSWx-width is **by far the easiest with Docker**. This document was
 written and tested using
