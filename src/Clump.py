@@ -50,21 +50,26 @@ from shapely.geometry import shape
 # wbt.work_dir = work_dir
 # wbt.set_verbose_mode(True)
 
-# Determine the path to the WBT folder
-script_dir = os.path.dirname(os.path.abspath(__file__))
-wbt_dir = os.path.abspath(os.path.join(script_dir, '..', 'WBT'))
-if wbt_dir not in sys.path:
-    sys.path.insert(0, wbt_dir)
 
-# Imports
-from whitebox_tools import WhiteboxTools
+# Dynamically set the root of the project
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.abspath(os.path.join(script_dir, '..'))
+
+# Add project root to sys.path
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
+# Import WBT and workflows
+from WBT.whitebox_tools import WhiteboxTools
 from whitebox_workflows import WbEnvironment
 
-# Init
+# Initialize WBT
 wbt = WhiteboxTools()
-wbe = WbEnvironment()
-wbt.work_dir = os.path.abspath(os.path.join(script_dir, '..'))
+wbt.work_dir = project_root
 wbt.set_verbose_mode(True)
+
+# Initialize environment (if needed)
+wbe = WbEnvironment()
 
 # ******************************************************************************
 # Declaration of variables (given as command line arguments)
