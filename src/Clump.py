@@ -51,8 +51,10 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # wbt.work_dir = work_dir
 # wbt.set_verbose_mode(True)
 
-from whitebox.whitebox_tools import WhiteboxTools
+from WBT.whitebox_tools import WhiteboxTools
+
 wbt = WhiteboxTools()
+wbt.set_whitebox_dir('./WBT')
 
 # ******************************************************************************
 # Declaration of variables (given as command line arguments)

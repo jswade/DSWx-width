@@ -53,7 +53,8 @@ unzip -nq "$zip_file" -d "$folder"
 rm -f "$zip_file"
 if [ $? -gt 0 ] ; then echo "Problem unizpping" >&2 ; exit 22 ; fi
 
-mv "$folder/WhiteboxTools_darwin_amd64/WBT" ../
+mv "$folder/WhiteboxTools_darwin_amd64/WBT" ../WBT/
+chmod +x ../WBT/whitebox_tools
 if [ $? -gt 0 ]; then echo "Problem moving WBT folder" >&2; exit 22; fi
 
 echo "Success"
