@@ -58,7 +58,7 @@ using NASA EarthAccess.
 - Ending date of study period (`str`)
 
 **Outputs:**
-- Output folder for downloaded OPERA DSWx CONF layers (folder of `.tif`)
+- Output folder for downloaded OPERA DSWx CONF layers (`.tif`)
 - File containing OPERA DSWx tile boundaries (`.kml`)
 
 ## `Download_SWOT_Node_Data_Pass.py`  
@@ -72,7 +72,7 @@ specified dates using NASA PODAAC's Hydrocron tool.
 - File containing SWOT orbital information (`.nc`)
 
 **Outputs:**
-- Output folder for downloaded SWOT observations (folder of `.csv`)
+- Output folder for downloaded SWOT observations (`.csv`)
 
 ## `SelectSWORDFeatures.py`  
 Selects SWORD nodes within target area, subdivided into separate shapefiles by their 
@@ -113,31 +113,31 @@ Reclassifies OPERA DSWx CONF pixel values to simpler WTR format (open water/part
 water) for main river identification and width computation.
 
 **Inputs:**
-- Folder containing downloaded OPERA DSWx CONF layers (folder of `.tif`)
+- Folder containing downloaded OPERA DSWx CONF layers (`.tif`)
 - Reclassification strategy ("cons" or "agg") (`str`)
 
 **Outputs:**
-- Output folder for reclassified DSWx layers (folder of `.tif`)
+- Output folder for reclassified DSWx layers (`.tif`)
 
 ## `TempAgg_OPERA.py`   
 Temporally aggregates reclassified DSWx layers over specified time window to remove 
 influence of clouds.
 
 **Inputs:**
-- Folder containing reclassified DSWx layers (folder of `.tif`)
+- Folder containing reclassified DSWx layers (`.tif`)
 - Starting date of study period (`str`)
 - Ending date of study period (`str`)
 - Length of temporal aggregation window (`int`)
 
 **Outputs:**
-- Output folder for temporally aggregated DSWx layers (folder of `.tif`)
+- Output folder for temporally aggregated DSWx layers (`.tif`)
 
 ## `UTM_Overlap_OPERA.py`    
 Identifies overlap of OPERA DSWx tiles with UTM zones for future tile merging.
 
 **Inputs:**
-- Folder containing temporally aggregated DSWx layers (folder of `.tif`)
-- Folder containing shapefiles of UTM zones (folder of `.shp`)
+- Folder containing temporally aggregated DSWx layers (`.tif`)
+- Folder containing shapefiles of UTM zones (`.shp`)
 
 **Outputs:**
 - File listing the OPERA DSWx tile ids for each target UTM zone (`.csv`)
@@ -147,57 +147,54 @@ Spatially merges temporally aggregated OPERA DSWx layers for each aggregation
 window and UTM zone.
 
 **Inputs:**
-- Folder containing temporally aggregated DSWx layers (folder of `.tif`)
+- Folder containing temporally aggregated DSWx layers (`.tif`)
 - File listing the OPERA DSWx tile ids for each target UTM zone (`.csv`)
 - Selected UTM zone (`str`)
 
 **Outputs:**
 - Output folder for merged DSWx layers for each aggregation window and UTM Zone
-(folder of `.tif`)
+(`.tif`)
 
 ## `Clump.py`    
 Clumps regions of DSWx pixels with the same value in preparation for main river identification.
 
 **Inputs:**
-- Folder containing merged DSWx layers (folder of `.tif`)
+- Folder containing merged DSWx layers (`.tif`)
 - Shapefile of node Thiessen polygons for a given UTM zone (`.shp`)
 - Selected UTM zone (`str`)
 
 **Outputs:**
 - Output folder for clumped DSWx rasters and shapefiles for each aggregation window and UTM Zone
-(folder of `.shp` and `.tif`)
+(`.shp` and `.tif`)
 
 ## `CreatingMainRiver.py`   
 Identifies primary connected river channel from DSWx imagery, differentiated from disconnected 
 open water in the proximal floodplain.
 
 **Inputs:**
-- Folder containing clumped DSWx layers (folder of `.tif`)
+- Folder containing clumped DSWx layers (`.tif`)
 - Shapefile of node Thiessen polygons for a given UTM zone (`.shp`)
 - Shapefile of SWORD nodes for a given UTM zone (`.shp`)
-- Folder containing merged DSWx layers (folder of `.tif`)
+- Folder containing merged DSWx layers (`.tif`)
 - Selected UTM zone (`str`)
 
 **Outputs:**
 - Output folder for rasters identifying open water pixels belonging to main channel, 
 reclassified rasters of pixel values for main channel, and rasters differentiating connected
-and unconnected open and partial water pixels for each UTM zone (folder of `.shp` and `.tif`)
+and unconnected open and partial water pixels for each UTM zone (`.shp` and `.tif`)
 
-## `CreatingMainRiver.py`   
-Identifies primary connected river channel from DSWx imagery, differentiated from disconnected 
-open water in the proximal floodplain.
+## `PixelClassSummary.py`   
+Counts the number of DSWx pixels of each type corresponding to each target SWORD node 
+for each temporal aggregation window.
 
 **Inputs:**
-- Folder containing clumped DSWx layers (folder of `.tif`)
+- Folder containing DSWx main river rasters (`.tif`)
 - Shapefile of node Thiessen polygons for a given UTM zone (`.shp`)
-- Shapefile of SWORD nodes for a given UTM zone (`.shp`)
-- Folder containing merged DSWx layers (folder of `.tif`)
 - Selected UTM zone (`str`)
 
 **Outputs:**
-- Output folder for rasters identifying open water pixels belonging to main channel, 
-reclassified rasters of pixel values for main channel, and rasters differentiating connected
-and unconnected open and partial water pixels for each UTM zone (folder of `.shp` and `.tif`)
+- Output folder for files containing pixel counts corresponding to SWORD nodes
+(`.csv`)
 
 
 

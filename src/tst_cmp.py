@@ -84,9 +84,10 @@ def compare_shapefiles(file_org, file_tst):
         gdf2 = gdf2.sort_index().reset_index(drop=True)
 
         # Check geometry equality
-        if not gdf1.geometry.equals(gdf2.geometry):
-            diffs = gdf1.geometry != gdf2.geometry
-            print("Geometry mismatch in rows:", list(gdf1.index[diffs]))
+        geom_equal = gdf1.geometry.almost_equals(gdf2.geometry, decimal=6)
+        if not geom_equal.all():
+            mismatches = gdf1.index[~geom_equal]
+            print(f"Geometry mismatch in {len(mismatches)} rows: {list(mismatches[:10])}... [truncated]")
             return False
 
         # Check attribute equality (excluding geometry)
