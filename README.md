@@ -105,7 +105,7 @@ distance for pixel-to-node assignment.
 
 &nbsp;  
 
-## `CreateThiessenPolygons.py`   
+**`CreateThiessenPolygons.py`**   
 Generates Thiessen polygons surrounding SWORD nodes, delineating the zone of influence 
 of each node for pixel-to-node assignment.
 
@@ -118,7 +118,7 @@ of each node for pixel-to-node assignment.
 
 &nbsp;  
 
-## `ConfReclass_OPERA.py`    
+**`ConfReclass_OPERA.py`**    
 Reclassifies OPERA DSWx CONF pixel values to simpler WTR format (open water/partial 
 water) for main river identification and width computation.
 
@@ -131,7 +131,7 @@ water) for main river identification and width computation.
 
 &nbsp;  
 
-## `TempAgg_OPERA.py`   
+**`TempAgg_OPERA.py`**   
 Temporally aggregates reclassified DSWx layers over specified time window to remove 
 influence of clouds.
 
@@ -144,7 +144,7 @@ influence of clouds.
   * Outputs
     * Output folder for temporally aggregated DSWx layers (`.tif`)
 
-## `UTM_Overlap_OPERA.py`    
+**`UTM_Overlap_OPERA.py`**    
 Identifies overlap of OPERA DSWx tiles with UTM zones for future tile merging.
 
   * Inputs
@@ -156,7 +156,7 @@ Identifies overlap of OPERA DSWx tiles with UTM zones for future tile merging.
 
 &nbsp;  
 
-## `SpatialAgg_OPERA.py`    
+**`SpatialAgg_OPERA.py`**    
 Spatially merges temporally aggregated OPERA DSWx layers for each aggregation
 window and UTM zone.
 
@@ -171,7 +171,7 @@ window and UTM zone.
 
 &nbsp;  
 
-## `Clump.py`    
+**`Clump.py`**    
 Clumps regions of DSWx pixels with the same value in preparation for main river identification.
 
   * Inputs:  
@@ -185,7 +185,7 @@ Clumps regions of DSWx pixels with the same value in preparation for main river 
 
 &nbsp;  
 
-## `CreatingMainRiver.py`   
+**`CreatingMainRiver.py`**   
 Identifies primary connected river channel from DSWx imagery, differentiated from disconnected 
 open water in the proximal floodplain.
 
@@ -203,7 +203,7 @@ and unconnected open and partial water pixels for each UTM zone (`.shp` and `.ti
 
 &nbsp;  
 
-## `PixelClassSummary.py`   
+**`PixelClassSummary.py`**   
 Counts the number of DSWx pixels of each type corresponding to each target SWORD node 
 for each temporal aggregation window.
 
@@ -218,7 +218,7 @@ for each temporal aggregation window.
 
 &nbsp;  
 
-## `ThiessenWidthExtraction.py`   
+**`ThiessenWidthExtraction.py`**   
 Converts pixels counts to river width measurements for each SWORD node and for each 
 temporal aggregation window.
 
@@ -231,7 +231,7 @@ temporal aggregation window.
 
 &nbsp;  
 
-## `WidthAggregation.py`   
+**`WidthAggregation.py`**   
 Combines river width files for each UTM zone and temporal aggregation to a single 
 file for each time window.
 
@@ -244,7 +244,7 @@ file for each time window.
 
 &nbsp;  
 
-## `SWOT_Pixcvec_Decode.py`   
+**`SWOT_Pixcvec_Decode.py`**   
 Transforms SWOT PIXCVec point cloud observations from `.nc` to `.shp`.
 
   * Inputs:  
@@ -256,7 +256,7 @@ Transforms SWOT PIXCVec point cloud observations from `.nc` to `.shp`.
 
 &nbsp;  
 
-## `SWOT_Pixcvec_Raster.py`   
+**`SWOT_Pixcvec_Raster.py`**   
 Converts SWOT PIXCVec point cloud shapefile to raster that matches the spatial resolution
 of OPERA DSWx layers.
 
@@ -269,7 +269,7 @@ of OPERA DSWx layers.
 
 &nbsp;  
 
-## `Raster_Diff.py`   
+**`Raster_Diff.py`**   
 Compares OPERA DSWx main river raster to SWOT PIXCVec raster to identify differences 
 in water detection.
 
@@ -282,7 +282,7 @@ in water detection.
 
 &nbsp;  
 
-## `Raster_Diff.py`   
+**`Raster_Diff.py`**   
 Compares OPERA DSWx main river raster to SWOT PIXCVec raster to identify differences 
 in water detection.
 
@@ -295,7 +295,7 @@ in water detection.
 
 &nbsp;  
 
-## `SWOT_Bitwise_Qual.py`   
+**`SWOT_Bitwise_Qual.py`**   
 Decodes SWOT bitwise quality flags into more easily interpretable format for each 
 observation.
 
@@ -307,7 +307,7 @@ observation.
 
 &nbsp;  
 
-## `Node_Comp_Bitwise.py`   
+**`Node_Comp_Bitwise.py`**   
 Filters SWOT observations using bitwise quality flags and compares SWOT width observations to 
 coincident OPERA DSWx width observations.
 
@@ -321,7 +321,7 @@ coincident OPERA DSWx width observations.
 
 &nbsp;  
 
-## `Node_Comp_Metrics.py`   
+**`Node_Comp_Metrics.py`**   
 Aggregates SWOT-OPERA DSWx width comparisons to SWORD nodes to evaluate spatial 
 agreement of width observations.
 
@@ -335,7 +335,7 @@ agreement of width observations.
 
 &nbsp;  
 
-## `Node_Comp_Plots.py`   
+**`Node_Comp_Plots.py`**   
 Produces visualizations of the agreement between SWOT and OPERA DSWx width measurements.
 
   * Inputs:  
@@ -346,7 +346,7 @@ Produces visualizations of the agreement between SWOT and OPERA DSWx width measu
     
 &nbsp;  
 
-# Installation with Docker
+## Installation with Docker
 Installing DSWx-width is **by far the easiest with Docker**. This document was
 written and tested using
 [Docker Community Edition](https://www.docker.com/community-edition#/download)
@@ -372,7 +372,7 @@ DSWx-width is ready to go! To run it, just use:
 $ docker run --rm -it jswade1/DSWx-width
 ```
 
-# Installation on Debian
+## Installation on Debian
 This document was written and tested on a machine with a **clean** image of 
 [Debian 11.7.0 ARM64](https://cdimage.debian.org/cdimage/archive/11.7.0/arm64/iso-cd/debian-11.7.0-arm64-netinst.iso)
 installed, *i.e.* **no upgrade** was performed. 

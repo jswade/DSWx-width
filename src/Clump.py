@@ -14,7 +14,7 @@
 # ******************************************************************************
 # Import Python modules
 # ******************************************************************************
-from whitebox_workflows import WbEnvironment
+# from whitebox_workflows import WbEnvironment
 import rasterio.mask
 import numpy as np
 import geopandas as gpd
@@ -27,7 +27,6 @@ from rasterio.mask import mask
 from pandas import DataFrame
 from geopandas import GeoDataFrame
 from shapely.geometry import shape
-from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
 # ******************************************************************************
@@ -52,10 +51,11 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # wbt.set_verbose_mode(True)
 
 from whitebox.whitebox_tools import WhiteboxTools
-
+wbt_dir = os.path.abspath('../WBT/')
 wbt = WhiteboxTools()
-wbt.set_whitebox_binary('./WBT/whitebox_tools')
-wbt.set_working_dir('../')
+wbt.set_whitebox_dir(wbt_dir)
+wbt.set_working_dir(os.path.abspath('../')) 
+
 
 # ******************************************************************************
 # Declaration of variables (given as command line arguments)

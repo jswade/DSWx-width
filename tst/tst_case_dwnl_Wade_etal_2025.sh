@@ -42,18 +42,19 @@ echo "********************"
 #*****************************************************************************
 echo "- Downloading WBT"
 
-URL="https://www.whiteboxgeo.com/WBT_Darwin/WhiteboxTools_darwin_amd64.zip"
-folder="../"
+URL="https://www.whiteboxgeo.com/WBT_Linux/WhiteboxTools_linux_amd64.zip"
+folder="../wbt_download"
 zip_file="$folder/$(basename $URL)"
 
+mkdir -p $folder
 wget -nv -nc $URL -P $folder
 if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
 
 unzip -nq "$zip_file" -d "$folder"
 rm -f "$zip_file"
-if [ $? -gt 0 ] ; then echo "Problem unizpping" >&2 ; exit 22 ; fi
+if [ $? -gt 0 ] ; then echo "Problem unzipping" >&2 ; exit 22 ; fi
 
-mv "$folder/WhiteboxTools_darwin_amd64/WBT" ../WBT/
+mv "$folder/WhiteboxTools_linux_amd64/WBT" ../WBT/
 chmod +x ../WBT/whitebox_tools
 if [ $? -gt 0 ]; then echo "Problem moving WBT folder" >&2; exit 22; fi
 
