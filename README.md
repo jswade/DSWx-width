@@ -196,8 +196,37 @@ for each temporal aggregation window.
 - Output folder for files containing pixel counts corresponding to SWORD nodes
 (`.csv`)
 
+## `ThiessenWidthExtraction.py`   
+Converts pixels counts to river width measurements for each SWORD node and for each 
+temporal aggregation window.
 
+**Inputs:**
+- Folder of files containing pixel counts corresponding to SWORD nodes (`.csv`)
+- Selected UTM zone (`str`)
 
+**Outputs:**
+- Output folder for files containing river widths corresponding to SWORD nodes (`.csv`)
+
+## `WidthAggregation.py`   
+Combines river width files for each UTM zone and temporal aggregation to a single 
+file for each time window.
+
+**Inputs:**
+- Folder of files containing pixel counts corresponding to SWORD nodes (`.csv`)
+- Selected UTM zone (`str`)
+
+**Outputs:**
+- Output folder for files containing river widths corresponding to SWORD nodes (`.csv`)
+
+## `SWOT_Pixcvec_Decode.py`   
+Transforms SWOT PIXCVec point cloud observations from `.nc` to `.shp`.
+
+**Inputs:**
+- SWOT PIXCVec point cloud layer (`.nc`)
+- CRS EPSG of UTM zone (`str`)
+
+**Outputs:**
+- Output folder for files containing river widths corresponding to SWORD nodes (`.csv`)
 
 
 # Installation with Docker
