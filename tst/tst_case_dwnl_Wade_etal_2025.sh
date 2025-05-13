@@ -61,50 +61,6 @@ if [ $? -gt 0 ]; then echo "Problem moving WBT folder" >&2; exit 22; fi
 echo "Success"
 echo "********************"
 
-#echo "- Downloading WBT"
-#
-## Define paths
-#URL="https://www.whiteboxgeo.com/WBT_Linux/WhiteboxTools_linux_amd64.zip"
-#folder="$HOME/wbt_download"
-#zip_file="$folder/$(basename $URL)"
-#
-## Create folders
-#mkdir -p $folder
-#mkdir -p WBT
-#
-## Download zip
-#wget -nv -nc "$URL" -P "$folder"
-#if [ $? -gt 0 ]; then
-#    echo "Problem downloading $URL" >&2
-#    exit 44
-#fi
-#
-## Unzip it
-#unzip -nq "$zip_file" -d "$folder"
-#rm -f "$zip_file"
-#if [ $? -gt 0 ]; then
-#    echo "Problem unzipping" >&2
-#    exit 22
-#fi
-#
-## Debugging: List contents of the extracted directory
-#echo "Listing extracted contents:"
-#ls -l "$folder/WhiteboxTools_linux_amd64/"
-#
-## Move the binary to WBT/
-#mv "$folder/WhiteboxTools_linux_amd64/whitebox_tools" WBT/
-#chmod +x WBT/whitebox_tools
-#
-## Add __init__.py to WBT to make it a valid Python module
-#touch WBT/__init__.py
-#
-## Add WBT to PYTHONPATH for Python to find it
-#echo "PYTHONPATH=WBT:\$PYTHONPATH" >> $GITHUB_ENV
-#
-#echo "Success"
-#echo "********************"
-
-
 #*****************************************************************************
 #Done
 #*****************************************************************************
