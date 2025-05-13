@@ -59,6 +59,10 @@ if [ $? -gt 0 ]; then echo "Problem moving WBT folder" >&2; exit 22; fi
 echo "Success"
 echo "********************"
 
+#*****************************************************************************
+#Done
+#*****************************************************************************
+
 
 #*****************************************************************************
 #Download DSWx-Width Zenodo Repository to /input_testing/ and /output_testing/
@@ -68,32 +72,28 @@ echo "- Downloading DSWx-Width repository"
 #Download parameters
 #-----------------------------------------------------------------------------
 URL="https://zenodo.org/records/15391839/files"
-input_testing.zip
-folder=("../input_testing"                                                     \
-        "../output_testing")
+folder="../"
 list=("input_testing.zip"                                                      \
       "output_testing.zip")
 
 #-----------------------------------------------------------------------------
 #Download process
 #-----------------------------------------------------------------------------
-mkdir -p $folder
 for ((i = 0; i < ${#list[@]}; i++)); do
-
-    wget -nv -nc $URL/${list[i]} -P ${folder[i]}
-    if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
+    wget -nv -nc $URL/${list[i]} -P $folder
+    if [ $? -gt 0 ] ; then echo "Problem downloading ${list[i]}" >&2 ; exit 44 ; fi
     
 #-----------------------------------------------------------------------------
 #Extract files
 #-----------------------------------------------------------------------------
-    unzip -nq "${folder[i]}/${list[i]}" -d "${folder[i]}/"
-    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+    unzip -nq "${folder}${list[i]}" -d "$folder"
+    if [ $? -gt 0 ] ; then echo "Problem extracting ${list[i]}" >&2 ; exit 22 ; fi
     
 #-----------------------------------------------------------------------------
 #Delete zip files
 #-----------------------------------------------------------------------------
-    rm "${folder[i]}/${list[i]}"
-    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+    rm "${folder}${list[i]}"
+    if [ $? -gt 0 ] ; then echo "Problem deleting ${list[i]}" >&2 ; exit 22 ; fi
 done
 
 echo "Success"
