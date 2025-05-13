@@ -63,22 +63,23 @@ echo "********************"
 
 echo "- Downloading WBT"
 
-# Define URL and paths
+# Define paths
 URL="https://www.whiteboxgeo.com/WBT_Linux/WhiteboxTools_linux_amd64.zip"
-folder="$HOME/wbt_download"  # Download folder inside the runner's home directory
+folder="$HOME/wbt_download"
 zip_file="$folder/$(basename $URL)"
 
-# Create download directory
+# Create folders
 mkdir -p $folder
+mkdir -p WBT
 
-# Download the zip file
-wget -nv -nc $URL -P $folder
+# Download zip
+wget -nv -nc "$URL" -P "$folder"
 if [ $? -gt 0 ]; then
     echo "Problem downloading $URL" >&2
     exit 44
 fi
 
-# Unzip the downloaded file
+# Unzip it
 unzip -nq "$zip_file" -d "$folder"
 rm -f "$zip_file"
 if [ $? -gt 0 ]; then
@@ -86,17 +87,15 @@ if [ $? -gt 0 ]; then
     exit 22
 fi
 
-# Move the WBT executable to a directory you control
-mkdir -p $HOME/whitebox_tools  # Directory where WBT will be stored
-mv "$folder/WhiteboxTools_linux_amd64/WBT" $HOME/whitebox_tools/whitebox_tools
-chmod +x $HOME/whitebox_tools/whitebox_tools
-if [ $? -gt 0 ]; then
-    echo "Problem moving WBT folder" >&2
-    exit 22
-fi
+# Move the binary to WBT/
+mv "$folder/WhiteboxTools_linux_amd64/whitebox_tools" WBT/
+chmod +x WBT/whitebox_tools
 
-# Add WhiteboxTools to PATH for subsequent commands
-echo "export PATH=$HOME/whitebox_tools:$PATH" >> $GITHUB_ENV
+# Add __init__.py to WBT to make it a valid Python module
+touch WBT/__init__.py
+
+# Add WBT to PYTHONPATH for Python to find it
+echo "PYTHONPATH=WBT:\$PYTHONPATH" >> $GITHUB_ENV
 
 echo "Success"
 echo "********************"
