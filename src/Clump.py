@@ -51,10 +51,15 @@ from shapely.geometry import shape
 # wbt.set_verbose_mode(True)
 
 from whitebox.whitebox_tools import WhiteboxTools
-wbt_dir = os.path.abspath('../WBT/')
+# Initialize first
 wbt = WhiteboxTools()
-wbt.set_whitebox_dir(wbt_dir)
-wbt.set_working_dir(os.path.abspath('../')) 
+
+# Immediately set the path to your local binary directory (prevent auto-download)
+wbt.set_whitebox_dir(os.path.abspath("../WBT"))
+
+# Optionally, set working directory
+wbt.set_working_dir(os.path.abspath("../output_test"))
+
 
 
 # ******************************************************************************
