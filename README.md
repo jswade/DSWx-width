@@ -19,7 +19,7 @@ DSWx-width aims to:
 
 The DSWx-width dataset is publicly available at https://zenodo.org/records/15391839.
 
-# Shell Script Documentation
+## Shell Script Documentation
 The shell scripts in the `/tst/` folder sequentially call Python scripts by providing
 the required input files and pointing to the desired output locations.
 
@@ -40,14 +40,14 @@ data.
 This script is used to recreate the outputs of 
 the DSWx-width analysis in its entirety.
 
-# Python Scripts Documentation  
+## Python Scripts Documentation  
 The Python scripts in the `/src/` folder represent individual computational steps used to 
 obtain river width measurements from OPERA DSWx imagery. Many of the Python scripts are 
 run in loops by the `/tst/` scripts for each unique UTM zone to align with the 
 projections of SWORD observations. Here, the scripts are listed in order of 
 their use in the analysis.
 
-## `OPERA_Dwnl.py`  
+**`OPERA_Dwnl.py`**  
 Downloads OPERA DSWx CONF layers within target region between specified dates 
 using NASA EarthAccess. 
 
@@ -60,7 +60,8 @@ using NASA EarthAccess.
 **Outputs:**
 - Output folder for downloaded OPERA DSWx CONF layers (`.tif`)
 - File containing OPERA DSWx tile boundaries (`.kml`)
-
+  
+  
 ## `Download_SWOT_Node_Data_Pass.py`  
 Downloads SWOT L2 HR River Single Pass observations for target nodes between
 specified dates using NASA PODAAC's Hydrocron tool. 
@@ -238,6 +239,17 @@ of OPERA DSWx layers.
 
 **Outputs:**
 - Rasterized SWOT PIXCVec point cloud (`.tif`)
+
+## `Raster_Diff.py`   
+Compares OPERA DSWx main river raster to SWOT PIXCVec raster to identify differences 
+in water detection.
+
+**Inputs:**
+- SWOT PIXCVec point cloud raster (`.shp`)
+- Raster of DSWx main river corresponding to date of SWOT PIXCVec observation (`.tif`)
+
+**Outputs:**
+- Raster of difference between OPERA DSWx and SWOT PIXCVec (`.tif`)
 
 ## `Raster_Diff.py`   
 Compares OPERA DSWx main river raster to SWOT PIXCVec raster to identify differences 

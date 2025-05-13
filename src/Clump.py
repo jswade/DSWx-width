@@ -33,8 +33,14 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # ******************************************************************************
 # Set file paths
 # ******************************************************************************
-# Set location of WBT directory
-work_dir = '../'
+# # Set location of WBT directory
+# work_dir = '../'
+# os.chdir(work_dir)
+# sys.path.append(work_dir)
+
+# Set working directory to project root
+script_dir = os.path.dirname(os.path.abspath(__file__))
+work_dir = os.path.abspath(os.path.join(script_dir, '..'))
 os.chdir(work_dir)
 sys.path.append(work_dir)
 
