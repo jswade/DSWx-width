@@ -44,12 +44,63 @@ def compare_files(file_org, file_tst):
 
 
 # Compare original and testing shapefiles
+# def compare_shapefiles(file_org, file_tst):
+#     import geopandas as gpd
+#     try:
+#         gdf1 = gpd.read_file(file_org)
+#         gdf2 = gpd.read_file(file_tst)
+#         return gdf1.equals(gdf2)
+#     except Exception as e:
+#         print("ERROR comparing shapefiles:", e)
+#         print("Original File Length: " + len(gdf1))
+#         print("Testing File Length: " + len(gdf2))
+#         return False
+
 def compare_shapefiles(file_org, file_tst):
     import geopandas as gpd
+    import pandas as pd
+
     try:
         gdf1 = gpd.read_file(file_org)
         gdf2 = gpd.read_file(file_tst)
-        return gdf1.equals(gdf2)
+
+        # Check length
+        if len(gdf1) != len(gdf2):
+            print(f"Mismatch in number of features: {len(gdf1)} vs {len(gdf2)}")
+            return False
+
+        # Check column names
+        if set(gdf1.columns) != set(gdf2.columns):
+            print("Mismatch in column names:")
+            print("Original:", sorted(gdf1.columns))
+            print("Test:    ", sorted(gdf2.columns))
+            return False
+
+        # Reorder columns to match
+        gdf2 = gdf2[gdf1.columns]
+
+        # Sort both by index to stabilize row order (optional: sort by ID field if exists)
+        gdf1 = gdf1.sort_index().reset_index(drop=True)
+        gdf2 = gdf2.sort_index().reset_index(drop=True)
+
+        # Check geometry equality
+        if not gdf1.geometry.equals(gdf2.geometry):
+            diffs = ~gdf1.geometry.equals(gdf2.geometry)
+            print("Geometry mismatch in rows:", list(gdf1.index[diffs]))
+            return False
+
+        # Check attribute equality (excluding geometry)
+        df1 = gdf1.drop(columns="geometry")
+        df2 = gdf2.drop(columns="geometry")
+        if not df1.equals(df2):
+            diff_mask = ~(df1 == df2).all(axis=1)
+            print("Attribute mismatch in rows:", list(df1.index[diff_mask]))
+            print("Differences (first few rows):")
+            print(pd.concat([df1[diff_mask], df2[diff_mask]], axis=1, keys=['Original', 'Test']).head())
+            return False
+
+        return True
+
     except Exception as e:
         print("ERROR comparing shapefiles:", e)
         return False

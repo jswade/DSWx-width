@@ -47,6 +47,21 @@ run in loops by the `/tst/` scripts for each unique UTM zone to align with the
 projections of SWORD observations. Here, the scripts are listed in order of 
 their use in the analysis.
 
+## `OPERA_Dwnl.py`  
+Downloads OPERA DSWx CONF layers within target region between specified dates 
+using NASA EarthAccess. 
+
+**Inputs:**
+- Shapefile of target region (`.shp`)
+- Folder of SWORD node shapefiles for each UTM zone (`.shp`)
+- Starting date of study period (`str`)
+- Ending date of study period (`str`)
+
+**Outputs:**
+- Output folder for downloaded OPERA DSWx CONF layers (folder of `.tif`)
+- File containing OPERA DSWx tile boundaries (`.kml`)
+
+
 ## `SelectSWORDFeatures.py`  
 Selects SWORD nodes within target area, subdivided into separate shapefiles by their 
 UTM zone.
