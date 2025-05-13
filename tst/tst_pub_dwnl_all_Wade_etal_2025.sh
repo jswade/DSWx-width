@@ -69,7 +69,7 @@ echo "- Downloading DSWx-Width repository"
 #-----------------------------------------------------------------------------
 #Download parameters
 #-----------------------------------------------------------------------------
-URL="https://zenodo.org/records/XXXXX/files"
+URL="https://zenodo.org/records/15391839/files"
 folder="../"
 list=("input.zip"                                                              \
       )

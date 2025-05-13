@@ -1,2 +1,0 @@
-Loading shapefiles
-Creating SWORD reach buffers
