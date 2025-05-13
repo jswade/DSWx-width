@@ -50,20 +50,17 @@ from shapely.geometry import shape
 # wbt.work_dir = work_dir
 # wbt.set_verbose_mode(True)
 
-from whitebox.whitebox_tools import WhiteboxTools
-# Initialize first
+work_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # Adjust as needed
+sys.path.append(work_dir)
+
+# Import whitebox packages
+from WBT.whitebox_tools import WhiteboxTools
+from whitebox_workflows import WbEnvironment
+
 wbt = WhiteboxTools()
-
-# Immediately set the path to your local binary directory (prevent auto-download)
-wbt.set_whitebox_dir(os.path.abspath("../WBT"))
-
-# Optionally, set working directory
-wbt.set_working_dir(os.path.abspath("../"))
-
-print("WhiteboxTools binary path:", wbt.get_whitebox_dir())
-print("Working directory:", wbt.get_working_dir())
-print("Is binary there?", os.path.exists(os.path.join(wbt.get_whitebox_dir(), 'whitebox_tools')))
-
+wbe = WbEnvironment()
+wbt.work_dir = work_dir
+wbt.set_verbose_mode(True)
 
 # ******************************************************************************
 # Declaration of variables (given as command line arguments)
