@@ -87,6 +87,10 @@ if [ $? -gt 0 ]; then
     exit 22
 fi
 
+# Debugging: List contents of the extracted directory
+echo "Listing extracted contents:"
+ls -l "$folder/WhiteboxTools_linux_amd64/"
+
 # Move the binary to WBT/
 mv "$folder/WhiteboxTools_linux_amd64/whitebox_tools" WBT/
 chmod +x WBT/whitebox_tools
