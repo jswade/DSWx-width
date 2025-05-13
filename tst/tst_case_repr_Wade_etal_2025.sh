@@ -342,6 +342,7 @@ echo "- Clumping similar pixels"
     ${utm}                                                                     \
     ../output_test/opera/clump/                                                \
     > $run_file
+cat "$run_file"
 #x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
 x=$?
 if [ $x -gt 0 ]; then

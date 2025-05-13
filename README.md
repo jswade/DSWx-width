@@ -51,13 +51,13 @@ their use in the analysis.
 Downloads OPERA DSWx CONF layers within target region between specified dates 
 using NASA EarthAccess. 
 
-###Inputs:  
+### Inputs:  
 - Shapefile of target region (`.shp`)
 - Folder of SWORD node shapefiles for each UTM zone (`.shp`)
 - Starting date of study period (`str`)
 - Ending date of study period (`str`)
 
-###Outputs:  
+### Outputs:  
 - Output folder for downloaded OPERA DSWx CONF layers (`.tif`)
 - File containing OPERA DSWx tile boundaries (`.kml`)
   
@@ -284,7 +284,26 @@ coincident OPERA DSWx width observations.
 **Outputs:**
 - File containing paired SWOT-OPERA DSWx width observations (`.csv`)
 
+## `Node_Comp_Metrics.py`   
+Aggregates SWOT-OPERA DSWx width comparisons to SWORD nodes to evaluate spatial 
+agreement of width observations.
 
+**Inputs:**
+- File containing paired SWOT-OPERA DSWx width observations (`.csv`)
+- Folder of target SWORD nodes for each UTM zone (`.shp`)
+
+**Outputs:**
+- File containing SWOT-OPERA DSWx agreement stats at SWORD nodes (`.csv`)
+- File containing SWOT-OPERA DSWx agreement stats at SWORD nodes (`.shp`)
+
+## `Node_Comp_Plots.py`   
+Produces visualizations of the agreement between SWOT and OPERA DSWx width measurements.
+
+**Inputs:**
+- File containing paired SWOT-OPERA DSWx width observations (`.csv`)
+
+**Outputs:**
+- Various visualizations
 
 # Installation with Docker
 Installing DSWx-width is **by far the easiest with Docker**. This document was
