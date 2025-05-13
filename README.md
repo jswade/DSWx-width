@@ -40,11 +40,11 @@ data.
 This script is used to recreate the outputs of 
 the DSWx-width analysis in its entirety.
 
-## Python Scripts Documentation  
+## Python Script Documentation  
 The Python scripts in the `/src/` folder represent individual computational steps used to 
 obtain river width measurements from OPERA DSWx imagery. Many of the Python scripts are 
 run in loops by the `/tst/` scripts for each unique UTM zone to align with the 
-projections of SWORD observations. Here, the scripts are listed in order of 
+projections of SWOT observations. Here, the scripts are listed in order of 
 their use in the analysis.
 
 **`OPERA_Dwnl.py`**  
@@ -144,6 +144,8 @@ influence of clouds.
   * Outputs
     * Output folder for temporally aggregated DSWx layers (`.tif`)
 
+&nbsp;  
+
 **`UTM_Overlap_OPERA.py`**    
 Identifies overlap of OPERA DSWx tiles with UTM zones for future tile merging.
 
@@ -213,7 +215,7 @@ for each temporal aggregation window.
     * Selected UTM zone (`str`)
 
   * Outputs:  
-- Output folder for files containing pixel counts corresponding to SWORD nodes
+    * Output folder for files containing pixel counts corresponding to SWORD nodes
 (`.csv`)
 
 &nbsp;  
@@ -342,7 +344,7 @@ Produces visualizations of the agreement between SWOT and OPERA DSWx width measu
     * File containing paired SWOT-OPERA DSWx width observations (`.csv`)
 
   * Outputs:  
-    * Various visualizations
+    * Matplotlib Visualizations
     
 &nbsp;  
 

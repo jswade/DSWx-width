@@ -58,8 +58,11 @@ wbt = WhiteboxTools()
 wbt.set_whitebox_dir(os.path.abspath("../WBT"))
 
 # Optionally, set working directory
-wbt.set_working_dir(os.path.abspath("../output_test"))
+wbt.set_working_dir(os.path.abspath("../"))
 
+print("WhiteboxTools binary path:", wbt.get_whitebox_dir())
+print("Working directory:", wbt.get_working_dir())
+print("Is binary there?", os.path.exists(os.path.join(wbt.get_whitebox_dir(), 'whitebox_tools')))
 
 
 # ******************************************************************************
