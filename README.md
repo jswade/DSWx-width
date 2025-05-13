@@ -20,6 +20,9 @@ DSWx-width aims to:
 The DSWx-width dataset is publicly available at https://zenodo.org/records/15391839.
 
 ## Shell Script Documentation
+The shell scripts in the `/tst/` folder sequentially call Python scripts by providing
+the required input files and pointing to the desired output locations.
+
 ### `tst_case_dwnl_Wade_etal_2025.sh`
 ### Purpose
 The `tst_case_dwnl_Wade_etal_2025.sh` script is used to download testing data
@@ -41,6 +44,7 @@ data.
 The `tst_pub_repr_all_Wade_etal_2025.sh` script is used to recreate the outputs of 
 the DSWx-width analysis in its entirety.
 
+## Python Scripts Documentation
 
 ## Installation with Docker
 Installing DSWx-width is **by far the easiest with Docker**. This document was
@@ -130,7 +134,7 @@ Also make sure that `python3` points to `python3.10`:
 
 ```
 $ sudo rm -f /usr/bin/python3
-$ sudo ln -s /usr/bin/python3.9 /usr/bin/python3
+$ sudo ln -s /usr/bin/python3.10 /usr/bin/python3
 ```
 
 ### Install Python packages
