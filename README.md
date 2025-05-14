@@ -3,8 +3,6 @@
 
 [![License (3-Clause BSD)](https://img.shields.io/badge/license-BSD%203--Clause-yellow.svg)](https://github.com/jswade/DSWx-width/blob/main/LICENSE)
 
-[![Docker Images](https://img.shields.io/badge/docker-images-blue?logo=docker)](https://hub.docker.com/r/jswade1/dswx-width)
-
 [![GitHub CI Status](https://github.com/jswade/DSWx-width/actions/workflows/github_actions_CI.yml/badge.svg)](https://github.com/jswade/DSWx-width/actions/workflows/github_actions_CI.yml)
 
 DSWx-width is a collection of Python and bash shell scripts that ...
