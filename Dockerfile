@@ -26,7 +26,7 @@
 #*******************************************************************************
 # Base OS
 #*******************************************************************************
-FROM debian:12.7-slim
+FROM debian:11.7-slim
 
 
 #*******************************************************************************
@@ -39,23 +39,22 @@ COPY . .
 #*******************************************************************************
 # Install OS dependencies
 #*******************************************************************************
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-        python3.10 python3.10-venv python3.10-distutils curl ca-certificates && \
-    ln -sf /usr/bin/python3.10 /usr/bin/python3 && \
-    curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10 && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+RUN  apt-get update && \
+     apt-get install -y --no-install-recommends $(grep -v -E '(^#|^$)' requirements_cd.apt) && \
+     rm -rf /var/lib/apt/lists/*
+
 
 #*******************************************************************************
 # Set up Python virtual environment and install dependencies
 #*******************************************************************************
-ENV VENV_PATH="/venv"
-ENV PATH="${VENV_PATH}/bin:$PATH"
+ADD https://bootstrap.pypa.io/pip/get-pip.py .
+RUN python3 get-pip.py --no-cache-dir \
+    `grep 'pip==' requirements.pip` \
+    `grep 'setuptools==' requirements.pip` \
+    `grep 'wheel==' requirements.pip` && \
+    rm get-pip.py
 
-RUN python3 -m venv $VENV_PATH && \
-    $VENV_PATH/bin/pip install --upgrade pip && \
-    $VENV_PATH/bin/pip install --no-cache-dir -r requirements.pip
+RUN pip3 install --no-cache-dir -r requirements.pip
 
 
 #*******************************************************************************
