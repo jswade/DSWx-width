@@ -7,8 +7,6 @@
 
 [![GitHub CI Status](https://github.com/jswade/DSWx-width/actions/workflows/github_actions_CI.yml/badge.svg)](https://github.com/jswade/DSWx-width/actions/workflows/github_actions_CI.yml)
 
-[![GitHub CD Status](https://github.com/jswade/DSWx-width/actions/workflows/github_actions_CD.yml/badge.svg)](https://github.com/jswade/DSWx-width/actions/workflows/github_actions_CD.yml)
-
 DSWx-width is a collection of Python and bash shell scripts that ...
 
 DSWx-width aims to:
@@ -348,42 +346,8 @@ Produces visualizations of the agreement between SWOT and OPERA DSWx width measu
     
 &nbsp;  
 
-## Installation with Docker
-Installing DSWx-width is **by far the easiest with Docker**. This document was
-written and tested using
-[Docker Community Edition](https://www.docker.com/community-edition#/download)
-which is available for free and can be installed on a wide variety of operating
-systems. To install it, follow the instructions in the link provided above.
 
-Note that the experienced users may find more up-to-date installation
-instructions in
-[Dockerfile](https://github.com/jswade/DSWx-width/blob/main/Dockerfile).
-
-### Download DSWx-width
-Downloading DSWx-width with Docker can be done using:
-
-```
-$ docker pull jswade1/DSWx-width
-```
-
-### Install packages
-With Docker, there is **no need to install anymore packages**.
-DSWx-width is ready to go! To run it, just use:
-
-```
-$ docker run --rm -it jswade1/DSWx-width
-```
-
-## Installation on Debian
-This document was written and tested on a machine with a **clean** image of 
-[Debian 11.7.0 ARM64](https://cdimage.debian.org/cdimage/archive/11.7.0/arm64/iso-cd/debian-11.7.0-arm64-netinst.iso)
-installed, *i.e.* **no upgrade** was performed. 
-Similar steps **may** be applicable for Ubuntu.
-
-Note that the experienced users may find more up-to-date installation 
-instructions in
-[github\_actions\_CI.yml](https://github.com/jswade/DSWx-width/blob/main/.github/workflows/github_actions_CI.yml).
-
+## Package Installation
 ### Download DSWx-width
 First, update package index files: 
 
