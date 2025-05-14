@@ -41,11 +41,11 @@ COPY . .
 #*******************************************************************************
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        $(grep -v -E '(^#|^$)' requirements_cd.apt) \
-        python3-venv python3-pip && \
+        python3.10 python3.10-venv python3.10-distutils curl ca-certificates && \
+    ln -sf /usr/bin/python3.10 /usr/bin/python3 && \
+    curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-
 
 #*******************************************************************************
 # Set up Python virtual environment and install dependencies
