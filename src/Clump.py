@@ -27,64 +27,32 @@ from rasterio.mask import mask
 from pandas import DataFrame
 from geopandas import GeoDataFrame
 from shapely.geometry import shape
-
-
-# ******************************************************************************
-# Set file paths
-# ******************************************************************************
-# # Set location of WBT directory
-# work_dir = '../'
-# os.chdir(work_dir)
-# sys.path.append(work_dir)
-
-# # Set working directory to project root
-# script_dir = os.path.dirname(os.path.abspath(__file__))
-# work_dir = os.path.abspath(os.path.join(script_dir, '..'))
-# os.chdir(work_dir)
-# sys.path.append(work_dir)
-
-# # Import whitebox packages
-# from WBT.whitebox_tools import WhiteboxTools
-# wbt = WhiteboxTools()
-# wbe = WbEnvironment()
-# wbt.work_dir = work_dir
-# wbt.set_verbose_mode(True)
-
 import importlib.util
 
-# Define the path to the whitebox_tools.py file inside the WBT/ directory
+# ******************************************************************************
+# Import WBT for clumping algorithm
+# ******************************************************************************
+# Define path to the whitebox_tools.py file inside the /WBT/
 wbt_path = os.path.join(os.path.dirname(__file__), '../WBT/whitebox_tools.py')
 
-# Check if the path to whitebox_tools.py exists
+# Check if path to whitebox_tools.py exists
 if not os.path.isfile(wbt_path):
     raise FileNotFoundError(f"Could not find 'whitebox_tools.py' at {wbt_path}")
 
-# Dynamically import the whitebox_tools module
+# Import whitebox_tools module
 spec = importlib.util.spec_from_file_location("whitebox_tools", wbt_path)
 whitebox_tools = importlib.util.module_from_spec(spec)
-
-# Add the module to sys.modules so it can be accessed globally
 sys.modules["whitebox_tools"] = whitebox_tools
-
-# Execute the module to load its contents
 spec.loader.exec_module(whitebox_tools)
 
-# Initialize WhiteboxTools object
+# Initialize WhiteboxTools
 wbt = whitebox_tools.WhiteboxTools()
-
-# Define and set the working directory
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 wbt.work_dir = project_root
-
-# Enable verbose mode for debugging
 wbt.set_verbose_mode(True)
 
-# Initialize the WbEnvironment if needed
 from whitebox_workflows import WbEnvironment
 wbe = WbEnvironment()
-
-print(f"WhiteboxTools initialized with work directory: {wbt.work_dir}")
-print("sys.path:", sys.path)
 
 
 # ******************************************************************************
@@ -242,14 +210,8 @@ for i in range(len(val_mon_yrs)):
     fp_shp = clump_out + 'clumpedras_poly/opera_' + utm_str + '_' +            \
         val_mon_yrs[i] + '_clumpedRas_poly.shp'
 
-    # # Use the clump tool to create regions
-    # wbt.clump(fp_reclass, fp_clump, diag=True, zero_back=True)
-    
-    ret_code = wbt.clump(fp_reclass, fp_clump, diag=True, zero_back=True)
-
-    if ret_code != 0 or not os.path.exists(fp_clump):
-        print(f"Clump failed or output missing for: {fp_reclass}")
-        continue
+    # Use the clump tool to create regions
+    wbt.clump(fp_reclass, fp_clump, diag=True, zero_back=True)
 
     # Clip clumped raster to thiessen polygons
     with rasterio.open(fp_clump) as src:
