@@ -56,7 +56,6 @@ ENV PATH="${VENV_PATH}/bin:$PATH"
 RUN python3 -m venv $VENV_PATH && \
     $VENV_PATH/bin/pip install --upgrade pip && \
     $VENV_PATH/bin/pip install --no-cache-dir -r requirements.pip && \
-    $VENV_PATH/bin/pip install --no-cache-dir . && \
     ./clean.sh
 
 
