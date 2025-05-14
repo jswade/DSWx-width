@@ -1,5 +1,5 @@
 # DSWx-width
-[![DOI](https://zenodo.org/badge/DOI/xxxxx)](https://doi.org/10.5281/zenodo.15391838)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15391838.svg)](https://doi.org/10.5281/zenodo.15391838)
 
 [![License (3-Clause BSD)](https://img.shields.io/badge/license-BSD%203--Clause-yellow.svg)](https://github.com/jswade/DSWx-width/blob/main/LICENSE)
 
