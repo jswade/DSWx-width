@@ -26,7 +26,7 @@
 #*******************************************************************************
 #Operating System
 #*******************************************************************************
-FROM python:3.10
+FROM python:3.10-slim
 
 
 #*******************************************************************************
@@ -40,7 +40,7 @@ COPY . .
 #Operating System Requirements
 #*******************************************************************************
 RUN  apt-get update && \
-     apt-get install -y --no-install-recommends $(grep -v -E '(^#|^$)' requirements.apt) && \
+     apt-get install -y --no-install-recommends $(grep -v -E '(^#|^$)' requirements_cd.apt) && \
      rm -rf /var/lib/apt/lists/*
 
 
