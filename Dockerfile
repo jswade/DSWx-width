@@ -49,9 +49,11 @@ RUN  apt-get update && \
 #*******************************************************************************
 #Python requirements
 #*******************************************************************************
-RUN pip3 install --no-cache-dir -r requirements.pip && \
-    pip3 install --no-cache-dir . && \
+ENV PATH="${PATH}:/root/.local/bin"
+RUN pip3 install --no-cache-dir --user -r requirements.pip && \
+    pip3 install --no-cache-dir --user . && \
     ./clean.sh
+
 
 #*******************************************************************************
 #Intended (default) command at execution of image (not used during build)
