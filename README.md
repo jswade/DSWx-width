@@ -1,9 +1,9 @@
 # DSWx-width
-[![DOI](https://zenodo.org/badge/DOI/xxxxx)](https://doi.org/xxxxx)
+[![DOI](https://zenodo.org/badge/DOI/xxxxx)](https://doi.org/10.5281/zenodo.15391838)
 
 [![License (3-Clause BSD)](https://img.shields.io/badge/license-BSD%203--Clause-yellow.svg)](https://github.com/jswade/DSWx-width/blob/main/LICENSE)
 
-[![Docker Images](https://img.shields.io/badge/docker-images-blue?logo=docker)](https://hub.docker.com/r/jswade1/xxxxx)
+[![Docker Images](https://img.shields.io/badge/docker-images-blue?logo=docker)](https://hub.docker.com/r/jswade1/dswx-width)
 
 [![GitHub CI Status](https://github.com/jswade/DSWx-width/actions/workflows/github_actions_CI.yml/badge.svg)](https://github.com/jswade/DSWx-width/actions/workflows/github_actions_CI.yml)
 
