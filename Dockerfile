@@ -24,9 +24,9 @@
 
 
 #*******************************************************************************
-# Base OS
+# Base OS with Python 3.10 pre-installed
 #*******************************************************************************
-FROM debian:12.7-slim
+FROM python:3.10-slim
 
 
 #*******************************************************************************
@@ -41,8 +41,7 @@ COPY . .
 #*******************************************************************************
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        $(grep -v -E '(^#|^$)' requirements_cd.apt) \
-        python3-venv python3-pip && \
+        $(grep -v -E '(^#|^$)' requirements_cd.apt) && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
