@@ -24,41 +24,46 @@
 
 
 #*******************************************************************************
-#Operating System
+# Base OS
 #*******************************************************************************
 FROM debian:12.7-slim
 
 
 #*******************************************************************************
-#Copy files into Docker image (this ignores the files listed in .dockerignore)
+# Set working directory & copy source
 #*******************************************************************************
 WORKDIR /home/dswx-width/
 COPY . .
 
 
 #*******************************************************************************
-#Operating System Requirements
+# Install OS dependencies
 #*******************************************************************************
-RUN  apt-get update && \
-     apt-get install -y --no-install-recommends \
-             $(grep -v -E '(^#|^$)' requirements_cd.apt) && \
-     apt-get clean && \
-     rm -rf /var/lib/apt/lists/*
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        $(grep -v -E '(^#|^$)' requirements_cd.apt) \
+        python3-venv python3-pip && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 
 #*******************************************************************************
-#Python requirements
+# Set up Python virtual environment and install dependencies
 #*******************************************************************************
-ENV PATH="${PATH}:/root/.local/bin"
-RUN pip3 install --no-cache-dir --user -r requirements.pip && \
-    pip3 install --no-cache-dir --user . && \
+ENV VENV_PATH="/venv"
+ENV PATH="${VENV_PATH}/bin:$PATH"
+
+RUN python3 -m venv $VENV_PATH && \
+    $VENV_PATH/bin/pip install --upgrade pip && \
+    $VENV_PATH/bin/pip install --no-cache-dir -r requirements.pip && \
+    $VENV_PATH/bin/pip install --no-cache-dir . && \
     ./clean.sh
 
 
 #*******************************************************************************
-#Intended (default) command at execution of image (not used during build)
+# Default shell
 #*******************************************************************************
-CMD  /bin/bash
+CMD ["/bin/bash"]
 
 
 #*******************************************************************************
